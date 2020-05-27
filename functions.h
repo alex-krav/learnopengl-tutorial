@@ -2,6 +2,8 @@
 #define FUNC_H
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
+#include "shader_const.h"
+#include "shader.h"
 
 const unsigned int SCR_WIDTH = 800;
 const unsigned int SCR_HEIGHT = 600;

@@ -1,6 +1,5 @@
 #include <iostream>
 #include "functions.h"
-#include "shader_const.h"
 
 int main_rect()
 {

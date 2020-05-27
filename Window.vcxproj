@@ -157,7 +157,17 @@
     <ClCompile Include="functions.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="rectangle.cpp" />
+    <ClCompile Include="attr_support.cpp" />
     <ClCompile Include="triangle.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="triangle_color.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="triangle_shader_class.cpp" />
+    <ClCompile Include="triangle_vertex_color.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -168,7 +178,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="functions.h" />
+    <ClInclude Include="shader.h" />
     <ClInclude Include="shader_const.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="shader.fs" />
+    <None Include="shader.vs" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
