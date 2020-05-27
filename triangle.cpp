@@ -1,7 +1,7 @@
 #include <iostream>
 #include "functions.h"
 
-int main()
+int main_tri()
 {
     GLFWwindow* window;
     try {
@@ -11,7 +11,6 @@ int main()
         return -1;
     }
     Shader ourShader("shader.vs", "shader_orange.fs");
-    //-----------------------------------------------------------------
 
     // set up vertex data (and buffer(s)) and configure vertex attributes
     float vertices[] = {
@@ -39,7 +38,6 @@ int main()
     // VAOs requires a call to glBindVertexArray anyways so we generally don't unbind VAOs (nor VBOs) when it's not directly necessary.
     glBindVertexArray(0);
 
-    //-----------------------------------------------------------------
     //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
     render_loop(window, ourShader, VBO, VAO);
 
