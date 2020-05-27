@@ -154,11 +154,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="functions.cpp" />
     <ClCompile Include="glad.c" />
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="rectangle.cpp" />
+    <ClCompile Include="triangle.cpp">
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="window.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="functions.h" />
+    <ClInclude Include="shader_const.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
