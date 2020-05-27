@@ -1,7 +1,7 @@
 #include "functions.h"
 #include <iostream>
 
-int main()
+int main_tri_shader_cl()
 {
     // glfw: initialize and configure
     // ------------------------------
