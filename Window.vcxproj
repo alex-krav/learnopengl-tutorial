@@ -166,7 +166,6 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="triangle_shader_class.cpp" />
     <ClCompile Include="triangle_vertex_color.cpp">
       <SubType>
       </SubType>

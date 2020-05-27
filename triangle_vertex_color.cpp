@@ -1,7 +1,7 @@
 #include <iostream>
 #include "functions.h"
 
-int main()
+int main_vert_col()
 {
     GLFWwindow* window;
     try {

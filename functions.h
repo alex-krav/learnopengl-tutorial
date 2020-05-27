@@ -13,6 +13,6 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 
 GLFWwindow* init_glfw();
 void render_loop(GLFWwindow* window, Shader ourShader, unsigned int &VBO, unsigned int &VAO);
-void render_loop(GLFWwindow* window, int& shaderProgram, unsigned int &VBO, unsigned int &VAO);
+void upd_shader_uniform_color(Shader ourShader, const char* uniformVar);
 
 #endif

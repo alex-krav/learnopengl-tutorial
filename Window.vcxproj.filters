@@ -39,9 +39,6 @@
     <ClCompile Include="triangle_vertex_color.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="triangle_shader_class.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="functions.h">

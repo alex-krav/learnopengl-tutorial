@@ -80,31 +80,11 @@ void render_loop(GLFWwindow* window, Shader ourShader, unsigned int &VBO, unsign
     }
 }
 
-
-
-void render_loop(GLFWwindow* window, int& shaderProgram, unsigned int& VBO, unsigned int& VAO)
+void upd_shader_uniform_color(Shader ourShader, const char* uniformVar)
 {
-    // render loop
-    // -----------
-    while (!glfwWindowShouldClose(window))
-    {
-        // input
-        // -----
-        processInput(window);
-
-        // render
-        // ------
-        glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-        glClear(GL_COLOR_BUFFER_BIT);
-
-        // render the triangle
-        glUseProgram(shaderProgram);
-        glBindVertexArray(VAO);
-        glDrawArrays(GL_TRIANGLES, 0, 3);
-
-        // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
-        // -------------------------------------------------------------------------------
-        glfwSwapBuffers(window);
-        glfwPollEvents();
-    }
+    // update shader uniform
+    float timeValue = glfwGetTime();
+    float greenValue = sin(timeValue) / 2.0f + 0.5f;
+    int vertexColorLocation = glGetUniformLocation(ourShader.getID(), uniformVar);
+    glUniform4f(vertexColorLocation, 0.0f, greenValue, 0.0f, 1.0f);
 }
