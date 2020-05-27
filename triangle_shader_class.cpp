@@ -36,7 +36,7 @@ int main_tri_shader_cl()
 
     // build and compile our shader program
     // ------------------------------------
-    Shader ourShader("shader.vs", "shader.fs"); // you can name your shader files however you like
+    Shader ourShader("shader_color.vs", "shader_in_color.fs"); // you can name your shader files however you like
 
     // set up vertex data (and buffer(s)) and configure vertex attributes
     // ------------------------------------------------------------------

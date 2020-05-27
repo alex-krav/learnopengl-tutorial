@@ -55,10 +55,19 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <None Include="shader_color.vs">
+      <Filter>Resource Files</Filter>
+    </None>
     <None Include="shader.vs">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="shader.fs">
+    <None Include="shader_in_color.fs">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="shader_uniform_color.fs">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="shader_orange.fs">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>
