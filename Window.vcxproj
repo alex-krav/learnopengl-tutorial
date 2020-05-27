@@ -166,6 +166,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="triangle_uniform_position.cpp" />
     <ClCompile Include="triangle_vertex_color.cpp">
       <SubType>
       </SubType>
@@ -186,6 +187,7 @@
     <None Include="shader_color.vs" />
     <None Include="shader_uniform_color.fs" />
     <None Include="shader_orange.fs" />
+    <None Include="shader_uniform_position.vs" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

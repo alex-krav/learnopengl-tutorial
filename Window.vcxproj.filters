@@ -39,6 +39,9 @@
     <ClCompile Include="triangle_uniform_color.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="triangle_uniform_position.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="functions.h">
@@ -65,6 +68,9 @@
       <Filter>Resource Files</Filter>
     </None>
     <None Include="shader_orange.fs">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="shader_uniform_position.vs">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>
