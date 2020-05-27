@@ -2,7 +2,7 @@
 #include <cmath>
 #include "functions.h"
 
-int main()
+int main_uni_col()
 {
     GLFWwindow* window;
     try {

@@ -162,7 +162,7 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="triangle_color.cpp">
+    <ClCompile Include="triangle_uniform_color.cpp">
       <SubType>
       </SubType>
     </ClCompile>

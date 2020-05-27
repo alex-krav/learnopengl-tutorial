@@ -33,10 +33,10 @@
     <ClCompile Include="attr_support.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="triangle_color.cpp">
+    <ClCompile Include="triangle_vertex_color.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="triangle_vertex_color.cpp">
+    <ClCompile Include="triangle_uniform_color.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
