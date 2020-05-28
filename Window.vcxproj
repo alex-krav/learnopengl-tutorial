@@ -167,6 +167,7 @@
     <ClCompile Include="rectangle.cpp" />
     <ClCompile Include="attr_support.cpp" />
     <ClCompile Include="smiley_texture.cpp" />
+    <ClCompile Include="smiley_texture_filtering.cpp" />
     <ClCompile Include="smiley_texture_wrapping.cpp" />
     <ClCompile Include="stb_image.cpp" />
     <ClCompile Include="triangle.cpp">

@@ -54,6 +54,9 @@
     <ClCompile Include="smiley_texture_wrapping.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="smiley_texture_filtering.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stb_image.h">
