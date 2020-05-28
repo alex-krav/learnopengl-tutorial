@@ -71,23 +71,23 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\opt\OpenGL\GLAD\include;C:\opt\OpenGL\GLFW\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\opt\OpenGL\GLFW\lib-vc2019;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\opt\OpenGL\GLAD\include;C:\opt\OpenGL\GLFW\include;C:\opt\OpenGL\SOIL\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\opt\OpenGL\GLFW\lib-vc2019;C:\opt\OpenGL\SOIL\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\opt\OpenGL\GLAD\include;C:\opt\OpenGL\GLFW\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\opt\OpenGL\GLFW\lib-vc2019;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\opt\OpenGL\GLAD\include;C:\opt\OpenGL\GLFW\include;C:\opt\OpenGL\SOIL\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\opt\OpenGL\GLFW\lib-vc2019;C:\opt\OpenGL\SOIL\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>C:\opt\OpenGL\GLAD\include;C:\opt\OpenGL\GLFW\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\opt\OpenGL\GLFW\lib-vc2019;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\opt\OpenGL\GLAD\include;C:\opt\OpenGL\GLFW\include;C:\opt\OpenGL\SOIL\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\opt\OpenGL\GLFW\lib-vc2019;C:\opt\OpenGL\SOIL\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>C:\opt\OpenGL\GLAD\include;C:\opt\OpenGL\GLFW\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\opt\OpenGL\GLFW\lib-vc2019;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\opt\OpenGL\GLAD\include;C:\opt\OpenGL\GLFW\include;C:\opt\OpenGL\SOIL\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\opt\OpenGL\GLFW\lib-vc2019;C:\opt\OpenGL\SOIL\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -95,11 +95,12 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>opengl32.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;glfw3.lib;SOIL.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions>/NODEFAULTLIB:opengl32.lib %(AdditionalOptions)</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
@@ -109,11 +110,12 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>opengl32.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;glfw3.lib;SOIL.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions>/NODEFAULTLIB:opengl32.lib %(AdditionalOptions)</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
@@ -125,13 +127,14 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>opengl32.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;glfw3.lib;SOIL.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions>/NODEFAULTLIB:opengl32.lib %(AdditionalOptions)</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
@@ -143,21 +146,27 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>opengl32.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;glfw3.lib;SOIL.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions>/NODEFAULTLIB:opengl32.lib %(AdditionalOptions)</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="functions.cpp" />
     <ClCompile Include="glad.c" />
+    <ClCompile Include="rectangle_texture.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="rectangle.cpp" />
     <ClCompile Include="attr_support.cpp" />
+    <ClCompile Include="stb_image.cpp" />
     <ClCompile Include="triangle.cpp">
       <SubType>
       </SubType>
@@ -179,15 +188,20 @@
   <ItemGroup>
     <ClInclude Include="functions.h" />
     <ClInclude Include="shader.h" />
-    <ClInclude Include="shader_const.h" />
+    <ClInclude Include="stb_image.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="shader_in_color.fs" />
     <None Include="shader.vs" />
     <None Include="shader_color.vs" />
+    <None Include="shader_texture.fs" />
+    <None Include="shader_texture.vs" />
     <None Include="shader_uniform_color.fs" />
     <None Include="shader_orange.fs" />
     <None Include="shader_uniform_position.vs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="resources\textures\container.jpg" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

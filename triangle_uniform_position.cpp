@@ -2,7 +2,7 @@
 #include <cmath>
 #include "functions.h"
 
-int main()
+int main_tri_uni()
 {
     GLFWwindow* window;
     try {

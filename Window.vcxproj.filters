@@ -42,16 +42,22 @@
     <ClCompile Include="triangle_uniform_position.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="stb_image.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="rectangle_texture.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="functions.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="stb_image.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="shader_const.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="functions.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="shader.h">
-      <Filter>Source Files</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -73,5 +79,16 @@
     <None Include="shader_uniform_position.vs">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="shader_texture.vs">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="shader_texture.fs">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="resources\textures\container.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>
