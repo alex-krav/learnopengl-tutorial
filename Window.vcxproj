@@ -71,22 +71,22 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\opt\OpenGL\GLAD\include;C:\opt\OpenGL\GLFW\include;C:\opt\OpenGL\SOIL\include;$(IncludePath)</IncludePath>
+    <IncludePath>C:\opt\OpenGL\GLAD\include;C:\opt\OpenGL\GLFW\include;C:\opt\OpenGL\SOIL\include;C:\opt\OpenGL\GLM;$(IncludePath)</IncludePath>
     <LibraryPath>C:\opt\OpenGL\GLFW\lib-vc2019;C:\opt\OpenGL\SOIL\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\opt\OpenGL\GLAD\include;C:\opt\OpenGL\GLFW\include;C:\opt\OpenGL\SOIL\include;$(IncludePath)</IncludePath>
+    <IncludePath>C:\opt\OpenGL\GLAD\include;C:\opt\OpenGL\GLFW\include;C:\opt\OpenGL\SOIL\include;C:\opt\OpenGL\GLM;$(IncludePath)</IncludePath>
     <LibraryPath>C:\opt\OpenGL\GLFW\lib-vc2019;C:\opt\OpenGL\SOIL\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>C:\opt\OpenGL\GLAD\include;C:\opt\OpenGL\GLFW\include;C:\opt\OpenGL\SOIL\include;$(IncludePath)</IncludePath>
+    <IncludePath>C:\opt\OpenGL\GLAD\include;C:\opt\OpenGL\GLFW\include;C:\opt\OpenGL\SOIL\include;C:\opt\OpenGL\GLM;$(IncludePath)</IncludePath>
     <LibraryPath>C:\opt\OpenGL\GLFW\lib-vc2019;C:\opt\OpenGL\SOIL\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>C:\opt\OpenGL\GLAD\include;C:\opt\OpenGL\GLFW\include;C:\opt\OpenGL\SOIL\include;$(IncludePath)</IncludePath>
+    <IncludePath>C:\opt\OpenGL\GLAD\include;C:\opt\OpenGL\GLFW\include;C:\opt\OpenGL\SOIL\include;C:\opt\OpenGL\GLM;$(IncludePath)</IncludePath>
     <LibraryPath>C:\opt\OpenGL\GLFW\lib-vc2019;C:\opt\OpenGL\SOIL\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -170,6 +170,7 @@
     <ClCompile Include="smiley_texture_filtering.cpp" />
     <ClCompile Include="smiley_texture_wrapping.cpp" />
     <ClCompile Include="stb_image.cpp" />
+    <ClCompile Include="transformations.cpp" />
     <ClCompile Include="triangle.cpp">
       <SubType>
       </SubType>
@@ -199,6 +200,7 @@
     <None Include="shader_color.vs" />
     <None Include="shader_texture.fs" />
     <None Include="shader_texture.vs" />
+    <None Include="shader_transform.vs" />
     <None Include="shader_two_textures.fs" />
     <None Include="shader_uniform_color.fs" />
     <None Include="shader_orange.fs" />

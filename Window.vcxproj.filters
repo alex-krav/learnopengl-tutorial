@@ -57,6 +57,9 @@
     <ClCompile Include="smiley_texture_filtering.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="transformations.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stb_image.h">
@@ -95,6 +98,9 @@
       <Filter>Resource Files</Filter>
     </None>
     <None Include="shader_two_textures.fs">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="shader_transform.vs">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>
