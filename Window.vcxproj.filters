@@ -66,6 +66,9 @@
     <ClCompile Include="coord_system_depth.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="coord_system_multiple.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stb_image.h">
