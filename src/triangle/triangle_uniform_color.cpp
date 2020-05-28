@@ -1,6 +1,6 @@
 #include <iostream>
 #include <cmath>
-#include "functions.h"
+#include "../../headers/functions.h"
 
 int main_uni_col()
 {
@@ -11,7 +11,7 @@ int main_uni_col()
     catch (std::exception& e) {
         return -1;
     }
-    Shader ourShader("shader.vs", "shader_uniform_color.fs");
+    Shader ourShader("shaders/shader.vs", "shaders/shader_uniform_color.fs");
 
     // set up vertex data (and buffer(s)) and configure vertex attributes
     // ------------------------------------------------------------------

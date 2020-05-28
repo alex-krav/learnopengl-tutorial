@@ -1,5 +1,5 @@
 #include <iostream>
-#include "functions.h"
+#include "../../headers/functions.h"
 
 int main_tri()
 {
@@ -10,7 +10,7 @@ int main_tri()
     catch (std::exception& e) {
         return -1;
     }
-    Shader ourShader("shader.vs", "shader_orange.fs");
+    Shader ourShader("shaders/shader.vs", "shaders/shader_orange.fs");
 
     // set up vertex data (and buffer(s)) and configure vertex attributes
     float vertices[] = {

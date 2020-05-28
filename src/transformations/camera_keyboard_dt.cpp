@@ -1,21 +1,18 @@
-#include "functions.h"
+#include "../../headers/functions.h"
 #include <iostream>
 
-void mouse_callback2(GLFWwindow* window, double xpos, double ypos);
-void scroll_callback2(GLFWwindow* window, double xoffset, double yoffset);
-void processInputPosition2(GLFWwindow* window);
-
 // camera
-Camera camera(glm::vec3(0.0f, 0.0f, 3.0f));
-float lastX2 = SCR_WIDTH / 2.0f;
-float lastY2 = SCR_HEIGHT / 2.0f;
-bool firstMouse2 = true;
+glm::vec3 cameraPos = glm::vec3(0.0f, 0.0f, 3.0f);
+glm::vec3 cameraFront = glm::vec3(0.0f, 0.0f, -1.0f);
+glm::vec3 cameraUp = glm::vec3(0.0f, 1.0f, 0.0f);
 
 // timing
-float deltaTime2 = 0.0f;	// time between current frame and last frame
-float lastFrame2 = 0.0f;
+float deltaTime = 0.0f;	// time between current frame and last frame
+float lastFrame = 0.0f;
 
-int main_mouse_class()
+void processInputPosition(GLFWwindow* window);
+
+int main_cam_kb()
 {
     GLFWwindow* window;
     try {
@@ -24,13 +21,10 @@ int main_mouse_class()
     catch (std::exception& e) {
         return -1;
     }
-    glfwSetCursorPosCallback(window, mouse_callback2);
-    glfwSetScrollCallback(window, scroll_callback2);
-    // tell GLFW to capture our mouse
-    glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+
     glEnable(GL_DEPTH_TEST);
 
-    Shader ourShader("shader_texture_projection.vs", "shader_two_textures.fs");
+    Shader ourShader("shaders/shader_texture_projection.vs", "shaders/shader_two_textures.fs");
 
     // set up vertex data (and buffer(s)) and configure vertex attributes
     // ------------------------------------------------------------------
@@ -164,6 +158,11 @@ int main_mouse_class()
     ourShader.setInt("texture1", 0);
     ourShader.setInt("texture2", 1);
 
+    // pass projection matrix to shader (as projection matrix rarely changes there's no need to do this per frame)
+    // -----------------------------------------------------------------------------------------------------------
+    glm::mat4 projection = glm::perspective(glm::radians(45.0f), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
+    ourShader.setMat4("projection", projection);
+
 
     // render loop
     // -----------
@@ -172,12 +171,12 @@ int main_mouse_class()
         // per-frame time logic
         // --------------------
         float currentFrame = glfwGetTime();
-        deltaTime2 = currentFrame - lastFrame2;
-        lastFrame2 = currentFrame;
+        deltaTime = currentFrame - lastFrame;
+        lastFrame = currentFrame;
 
         // input
         // -----
-        processInputPosition2(window);
+        processInputPosition(window);
 
         // render
         // ------
@@ -193,12 +192,8 @@ int main_mouse_class()
         // activate shader
         ourShader.use();
 
-        // pass projection matrix to shader (note that in this case it could change every frame)
-        glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
-        ourShader.setMat4("projection", projection);
-
         // camera/view transformation
-        glm::mat4 view = camera.GetViewMatrix();
+        glm::mat4 view = glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
         ourShader.setMat4("view", view);
 
         // render boxes
@@ -234,44 +229,18 @@ int main_mouse_class()
 
 // process all input: query GLFW whether relevant keys are pressed/released this frame and react accordingly
 // ---------------------------------------------------------------------------------------------------------
-void processInputPosition2(GLFWwindow* window)
+void processInputPosition(GLFWwindow* window)
 {
     if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
         glfwSetWindowShouldClose(window, true);
 
+    float cameraSpeed = 2.5 * deltaTime;
     if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
-        camera.ProcessKeyboard(FORWARD, deltaTime2);
+        cameraPos += cameraSpeed * cameraFront;
     if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
-        camera.ProcessKeyboard(BACKWARD, deltaTime2);
+        cameraPos -= cameraSpeed * cameraFront;
     if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
-        camera.ProcessKeyboard(LEFT, deltaTime2);
+        cameraPos -= glm::normalize(glm::cross(cameraFront, cameraUp)) * cameraSpeed;
     if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
-        camera.ProcessKeyboard(RIGHT, deltaTime2);
-}
-
-// glfw: whenever the mouse moves, this callback is called
-// -------------------------------------------------------
-void mouse_callback2(GLFWwindow* window, double xpos, double ypos)
-{
-    if (firstMouse2)
-    {
-        lastX2 = xpos;
-        lastY2 = ypos;
-        firstMouse2 = false;
-    }
-
-    float xoffset = xpos - lastX2;
-    float yoffset = lastY2 - ypos; // reversed since y-coordinates go from bottom to top
-
-    lastX2 = xpos;
-    lastY2 = ypos;
-
-    camera.ProcessMouseMovement(xoffset, yoffset);
-}
-
-// glfw: whenever the mouse scroll wheel scrolls, this callback is called
-// ----------------------------------------------------------------------
-void scroll_callback2(GLFWwindow* window, double xoffset, double yoffset)
-{
-    camera.ProcessMouseScroll(yoffset);
+        cameraPos += glm::normalize(glm::cross(cameraFront, cameraUp)) * cameraSpeed;
 }

@@ -1,5 +1,5 @@
 #include <iostream>
-#include "functions.h"
+#include "../../headers/functions.h"
 
 int main_vert_col()
 {
@@ -10,7 +10,7 @@ int main_vert_col()
     catch (std::exception& e) {
         return -1;
     }
-    Shader ourShader("shader_color.vs", "shader_in_color.fs");
+    Shader ourShader("shaders/shader_color.vs", "shaders/shader_in_color.fs");
 
     // set up vertex data (and buffer(s)) and configure vertex attributes
     float vertices[] = {

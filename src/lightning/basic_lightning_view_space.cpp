@@ -1,24 +1,24 @@
-#include "functions.h"
+#include "../../headers/functions.h"
 #include <iostream>
 
-void mouse_callback5(GLFWwindow* window, double xpos, double ypos);
-void scroll_callback5(GLFWwindow* window, double xoffset, double yoffset);
-void processInput5(GLFWwindow* window);
+void mouse_callback7(GLFWwindow* window, double xpos, double ypos);
+void scroll_callback7(GLFWwindow* window, double xoffset, double yoffset);
+void processInput7(GLFWwindow* window);
 
 // camera
-Camera camera5(glm::vec3(0.0f, 0.0f, 3.0f));
-float lastX5 = SCR_WIDTH / 2.0f;
-float lastY5 = SCR_HEIGHT / 2.0f;
-bool firstMouse5 = true;
+Camera camera7(glm::vec3(0.0f, 0.0f, 3.0f));
+float lastX7 = SCR_WIDTH / 2.0f;
+float lastY7 = SCR_HEIGHT / 2.0f;
+bool firstMouse7 = true;
 
 // timing
-float deltaTime5 = 0.0f;
-float lastFrame5 = 0.0f;
+float deltaTime7 = 0.0f;
+float lastFrame7 = 0.0f;
 
 // lighting
-glm::vec3 lightPos5(1.2f, 1.0f, 2.0f);
+glm::vec3 lightPos7(1.2f, 1.0f, 2.0f);
 
-int main_spec()
+int main_view()
 {
     GLFWwindow* window;
     try {
@@ -27,14 +27,14 @@ int main_spec()
     catch (std::exception& e) {
         return -1;
     }
-    glfwSetCursorPosCallback(window, mouse_callback5);
-    glfwSetScrollCallback(window, scroll_callback5);
+    glfwSetCursorPosCallback(window, mouse_callback7);
+    glfwSetScrollCallback(window, scroll_callback7);
     // tell GLFW to capture our mouse
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
     glEnable(GL_DEPTH_TEST);
 
-    Shader lightingShader("basic_lightning_specular.vs", "basic_lightning_specular.fs");
-    Shader lightCubeShader("light_cube.vs", "light_cube.fs");
+    Shader lightingShader("shaders/basic_lightning_view.vs", "shaders/basic_lightning_view.fs");
+    Shader lightCubeShader("shaders/light_cube.vs", "shaders/light_cube.fs");
 
     // set up vertex data (and buffer(s)) and configure vertex attributes
     // ------------------------------------------------------------------
@@ -117,12 +117,12 @@ int main_spec()
         // per-frame time logic
         // --------------------
         float currentFrame = glfwGetTime();
-        deltaTime5 = currentFrame - lastFrame5;
-        lastFrame5 = currentFrame;
+        deltaTime7 = currentFrame - lastFrame7;
+        lastFrame7 = currentFrame;
 
         // input
         // -----
-        processInput5(window);
+        processInput7(window);
 
         // render
         // ------
@@ -133,12 +133,12 @@ int main_spec()
         lightingShader.use();
         lightingShader.setVec3("objectColor", 1.0f, 0.5f, 0.31f);
         lightingShader.setVec3("lightColor", 1.0f, 1.0f, 1.0f);
-        lightingShader.setVec3("lightPos", lightPos5);
-        lightingShader.setVec3("viewPos", camera5.Position);
+        lightingShader.setVec3("lightPos", lightPos7);
+        lightingShader.setVec3("viewPos", camera7.Position);
 
         // view/projection transformations
-        glm::mat4 projection = glm::perspective(glm::radians(camera5.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
-        glm::mat4 view = camera5.GetViewMatrix();
+        glm::mat4 projection = glm::perspective(glm::radians(camera7.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
+        glm::mat4 view = camera7.GetViewMatrix();
         lightingShader.setMat4("projection", projection);
         lightingShader.setMat4("view", view);
 
@@ -156,7 +156,7 @@ int main_spec()
         lightCubeShader.setMat4("projection", projection);
         lightCubeShader.setMat4("view", view);
         model = glm::mat4(1.0f);
-        model = glm::translate(model, lightPos5);
+        model = glm::translate(model, lightPos7);
         model = glm::scale(model, glm::vec3(0.2f)); // a smaller cube
         lightCubeShader.setMat4("model", model);
 
@@ -184,44 +184,44 @@ int main_spec()
 
 // process all input: query GLFW whether relevant keys are pressed/released this frame and react accordingly
 // ---------------------------------------------------------------------------------------------------------
-void processInput5(GLFWwindow* window)
+void processInput7(GLFWwindow* window)
 {
     if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
         glfwSetWindowShouldClose(window, true);
 
     if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
-        camera5.ProcessKeyboard(FORWARD, deltaTime5);
+        camera7.ProcessKeyboard(FORWARD, deltaTime7);
     if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
-        camera5.ProcessKeyboard(BACKWARD, deltaTime5);
+        camera7.ProcessKeyboard(BACKWARD, deltaTime7);
     if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
-        camera5.ProcessKeyboard(LEFT, deltaTime5);
+        camera7.ProcessKeyboard(LEFT, deltaTime7);
     if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
-        camera5.ProcessKeyboard(RIGHT, deltaTime5);
+        camera7.ProcessKeyboard(RIGHT, deltaTime7);
 }
 
 // glfw: whenever the mouse moves, this callback is called
 // -------------------------------------------------------
-void mouse_callback5(GLFWwindow* window, double xpos, double ypos)
+void mouse_callback7(GLFWwindow* window, double xpos, double ypos)
 {
-    if (firstMouse5)
+    if (firstMouse7)
     {
-        lastX5 = xpos;
-        lastY5 = ypos;
-        firstMouse5 = false;
+        lastX7 = xpos;
+        lastY7 = ypos;
+        firstMouse7 = false;
     }
 
-    float xoffset = xpos - lastX5;
-    float yoffset = lastY5 - ypos; // reversed since y-coordinates go from bottom to top
+    float xoffset = xpos - lastX7;
+    float yoffset = lastY7 - ypos; // reversed since y-coordinates go from bottom to top
 
-    lastX5 = xpos;
-    lastY5 = ypos;
+    lastX7 = xpos;
+    lastY7 = ypos;
 
-    camera5.ProcessMouseMovement(xoffset, yoffset);
+    camera7.ProcessMouseMovement(xoffset, yoffset);
 }
 
 // glfw: whenever the mouse scroll wheel scrolls, this callback is called
 // ----------------------------------------------------------------------
-void scroll_callback5(GLFWwindow* window, double xoffset, double yoffset)
+void scroll_callback7(GLFWwindow* window, double xoffset, double yoffset)
 {
-    camera5.ProcessMouseScroll(yoffset);
+    camera7.ProcessMouseScroll(yoffset);
 }

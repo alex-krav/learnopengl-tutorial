@@ -158,81 +158,66 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="basic_lightning_diffuse.cpp" />
-    <ClCompile Include="basic_lightning_gouraud.cpp" />
-    <ClCompile Include="basic_lightning_move.cpp" />
-    <ClCompile Include="basic_lightning_specular.cpp" />
-    <ClCompile Include="basic_lightning_view_space.cpp" />
-    <ClCompile Include="camera_circle.cpp" />
-    <ClCompile Include="camera_keyboard_dt.cpp" />
-    <ClCompile Include="camera_mouse_class.cpp" />
-    <ClCompile Include="camera_mouse_zoom.cpp" />
-    <ClCompile Include="colors.cpp" />
-    <ClCompile Include="coord_system.cpp" />
-    <ClCompile Include="coord_system_depth.cpp" />
-    <ClCompile Include="coord_system_multiple.cpp" />
-    <ClCompile Include="functions.cpp" />
-    <ClCompile Include="glad.c" />
-    <ClCompile Include="rectangle_texture.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="rectangle.cpp" />
-    <ClCompile Include="attr_support.cpp" />
-    <ClCompile Include="smiley_texture.cpp" />
-    <ClCompile Include="smiley_texture_filtering.cpp" />
-    <ClCompile Include="smiley_texture_wrapping.cpp" />
-    <ClCompile Include="camera.h" />
-    <ClCompile Include="stb_image.cpp" />
-    <ClCompile Include="transformations.cpp" />
-    <ClCompile Include="triangle.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="triangle_uniform_color.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="triangle_uniform_position.cpp" />
-    <ClCompile Include="triangle_vertex_color.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="window.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
+    <ClCompile Include="headers\functions.cpp" />
+    <ClCompile Include="headers\glad.c" />
+    <ClCompile Include="headers\stb_image.cpp" />
+    <ClCompile Include="src\lightning\basic_lightning_diffuse.cpp" />
+    <ClCompile Include="src\lightning\basic_lightning_gouraud.cpp" />
+    <ClCompile Include="src\lightning\basic_lightning_move.cpp" />
+    <ClCompile Include="src\lightning\basic_lightning_specular.cpp" />
+    <ClCompile Include="src\lightning\basic_lightning_view_space.cpp" />
+    <ClCompile Include="src\lightning\colors.cpp" />
+    <ClCompile Include="src\texture\rectangle_texture.cpp" />
+    <ClCompile Include="src\texture\smiley_texture.cpp" />
+    <ClCompile Include="src\texture\smiley_texture_filtering.cpp" />
+    <ClCompile Include="src\texture\smiley_texture_wrapping.cpp" />
+    <ClCompile Include="src\transformations\camera_circle.cpp" />
+    <ClCompile Include="src\transformations\camera_keyboard_dt.cpp" />
+    <ClCompile Include="src\transformations\camera_mouse_class.cpp" />
+    <ClCompile Include="src\transformations\camera_mouse_zoom.cpp" />
+    <ClCompile Include="src\transformations\coord_system.cpp" />
+    <ClCompile Include="src\transformations\coord_system_depth.cpp" />
+    <ClCompile Include="src\transformations\coord_system_multiple.cpp" />
+    <ClCompile Include="src\transformations\transformations.cpp" />
+    <ClCompile Include="src\triangle\attr_support.cpp" />
+    <ClCompile Include="src\triangle\rectangle.cpp" />
+    <ClCompile Include="src\triangle\triangle.cpp" />
+    <ClCompile Include="src\triangle\triangle_uniform_color.cpp" />
+    <ClCompile Include="src\triangle\triangle_uniform_position.cpp" />
+    <ClCompile Include="src\triangle\triangle_vertex_color.cpp" />
+    <ClCompile Include="src\triangle\window.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="functions.h" />
-    <ClInclude Include="shader.h" />
-    <ClInclude Include="stb_image.h" />
+    <ClInclude Include="headers\camera.h" />
+    <ClInclude Include="headers\functions.h" />
+    <ClInclude Include="headers\shader.h" />
+    <ClInclude Include="headers\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="basic_lightning_diffuse.fs" />
-    <None Include="basic_lightning_diffuse.vs" />
-    <None Include="basic_lightning_gourand.fs" />
-    <None Include="basic_lightning_gourand.vs" />
-    <None Include="basic_lightning_specular.fs" />
-    <None Include="basic_lightning_specular.vs" />
-    <None Include="basic_lightning_view.fs" />
-    <None Include="basic_lightning_view.vs" />
-    <None Include="light_cube.fs" />
-    <None Include="light_cube.vs" />
-    <None Include="shader_in_color.fs" />
-    <None Include="shader.vs" />
-    <None Include="shader_color.vs" />
-    <None Include="shader_light.fs" />
-    <None Include="shader_projection.vs" />
-    <None Include="shader_texture_projection.vs" />
-    <None Include="shader_texture.fs" />
-    <None Include="shader_texture.vs" />
-    <None Include="shader_transform.vs" />
-    <None Include="shader_two_textures.fs" />
-    <None Include="shader_uniform_color.fs" />
-    <None Include="shader_orange.fs" />
-    <None Include="shader_uniform_position.vs" />
-    <None Include="shader_white.fs" />
+    <None Include="shaders\basic_lightning_diffuse.fs" />
+    <None Include="shaders\basic_lightning_diffuse.vs" />
+    <None Include="shaders\basic_lightning_gourand.fs" />
+    <None Include="shaders\basic_lightning_gourand.vs" />
+    <None Include="shaders\basic_lightning_specular.fs" />
+    <None Include="shaders\basic_lightning_specular.vs" />
+    <None Include="shaders\basic_lightning_view.fs" />
+    <None Include="shaders\basic_lightning_view.vs" />
+    <None Include="shaders\light_cube.fs" />
+    <None Include="shaders\light_cube.vs" />
+    <None Include="shaders\shader.vs" />
+    <None Include="shaders\shader_color.vs" />
+    <None Include="shaders\shader_in_color.fs" />
+    <None Include="shaders\shader_light.fs" />
+    <None Include="shaders\shader_orange.fs" />
+    <None Include="shaders\shader_projection.vs" />
+    <None Include="shaders\shader_texture.fs" />
+    <None Include="shaders\shader_texture.vs" />
+    <None Include="shaders\shader_texture_projection.vs" />
+    <None Include="shaders\shader_transform.vs" />
+    <None Include="shaders\shader_two_textures.fs" />
+    <None Include="shaders\shader_uniform_color.fs" />
+    <None Include="shaders\shader_uniform_position.vs" />
+    <None Include="shaders\shader_white.fs" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="resources\textures\awesomeface.png" />

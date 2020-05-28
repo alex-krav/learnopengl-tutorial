@@ -1,24 +1,24 @@
-#include "functions.h"
+#include "../../headers/functions.h"
 #include <iostream>
 
-void mouse_callback4(GLFWwindow* window, double xpos, double ypos);
-void scroll_callback4(GLFWwindow* window, double xoffset, double yoffset);
-void processInput4(GLFWwindow* window);
+void mouse_callback8(GLFWwindow* window, double xpos, double ypos);
+void scroll_callback8(GLFWwindow* window, double xoffset, double yoffset);
+void processInput8(GLFWwindow* window);
 
 // camera
-Camera camera4(glm::vec3(0.0f, 0.0f, 3.0f));
-float lastX4 = SCR_WIDTH / 2.0f;
-float lastY4 = SCR_HEIGHT / 2.0f;
-bool firstMouse4 = true;
+Camera camera8(glm::vec3(0.0f, 0.0f, 3.0f));
+float lastX8 = SCR_WIDTH / 2.0f;
+float lastY8 = SCR_HEIGHT / 2.0f;
+bool firstMouse8 = true;
 
 // timing
-float deltaTime4 = 0.0f;
-float lastFrame4 = 0.0f;
+float deltaTime8 = 0.0f;
+float lastFrame8 = 0.0f;
 
 // lighting
-glm::vec3 lightPos4(1.2f, 1.0f, 2.0f);
+glm::vec3 lightPos8(1.2f, 1.0f, 2.0f);
 
-int main_diffuse()
+int main()
 {
     GLFWwindow* window;
     try {
@@ -27,14 +27,14 @@ int main_diffuse()
     catch (std::exception& e) {
         return -1;
     }
-    glfwSetCursorPosCallback(window, mouse_callback4);
-    glfwSetScrollCallback(window, scroll_callback4);
+    glfwSetCursorPosCallback(window, mouse_callback8);
+    glfwSetScrollCallback(window, scroll_callback8);
     // tell GLFW to capture our mouse
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
     glEnable(GL_DEPTH_TEST);
 
-    Shader lightingShader("basic_lightning_diffuse.vs", "basic_lightning_diffuse.fs");
-    Shader lightCubeShader("light_cube.vs", "light_cube.fs");
+    Shader lightingShader("shaders/basic_lightning_gourand.vs", "shaders/basic_lightning_gourand.fs");
+    Shader lightCubeShader("shaders/light_cube.vs", "shaders/light_cube.fs");
 
     // set up vertex data (and buffer(s)) and configure vertex attributes
     // ------------------------------------------------------------------
@@ -117,12 +117,12 @@ int main_diffuse()
         // per-frame time logic
         // --------------------
         float currentFrame = glfwGetTime();
-        deltaTime4 = currentFrame - lastFrame4;
-        lastFrame4 = currentFrame;
+        deltaTime8 = currentFrame - lastFrame8;
+        lastFrame8 = currentFrame;
 
         // input
         // -----
-        processInput4(window);
+        processInput8(window);
 
         // render
         // ------
@@ -133,11 +133,12 @@ int main_diffuse()
         lightingShader.use();
         lightingShader.setVec3("objectColor", 1.0f, 0.5f, 0.31f);
         lightingShader.setVec3("lightColor", 1.0f, 1.0f, 1.0f);
-        lightingShader.setVec3("lightPos", lightPos4);
+        lightingShader.setVec3("lightPos", lightPos8);
+        lightingShader.setVec3("viewPos", camera8.Position);
 
         // view/projection transformations
-        glm::mat4 projection = glm::perspective(glm::radians(camera4.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
-        glm::mat4 view = camera4.GetViewMatrix();
+        glm::mat4 projection = glm::perspective(glm::radians(camera8.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
+        glm::mat4 view = camera8.GetViewMatrix();
         lightingShader.setMat4("projection", projection);
         lightingShader.setMat4("view", view);
 
@@ -155,7 +156,7 @@ int main_diffuse()
         lightCubeShader.setMat4("projection", projection);
         lightCubeShader.setMat4("view", view);
         model = glm::mat4(1.0f);
-        model = glm::translate(model, lightPos4);
+        model = glm::translate(model, lightPos8);
         model = glm::scale(model, glm::vec3(0.2f)); // a smaller cube
         lightCubeShader.setMat4("model", model);
 
@@ -183,44 +184,44 @@ int main_diffuse()
 
 // process all input: query GLFW whether relevant keys are pressed/released this frame and react accordingly
 // ---------------------------------------------------------------------------------------------------------
-void processInput4(GLFWwindow* window)
+void processInput8(GLFWwindow* window)
 {
     if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
         glfwSetWindowShouldClose(window, true);
 
     if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
-        camera4.ProcessKeyboard(FORWARD, deltaTime4);
+        camera8.ProcessKeyboard(FORWARD, deltaTime8);
     if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
-        camera4.ProcessKeyboard(BACKWARD, deltaTime4);
+        camera8.ProcessKeyboard(BACKWARD, deltaTime8);
     if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
-        camera4.ProcessKeyboard(LEFT, deltaTime4);
+        camera8.ProcessKeyboard(LEFT, deltaTime8);
     if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
-        camera4.ProcessKeyboard(RIGHT, deltaTime4);
+        camera8.ProcessKeyboard(RIGHT, deltaTime8);
 }
 
 // glfw: whenever the mouse moves, this callback is called
 // -------------------------------------------------------
-void mouse_callback4(GLFWwindow* window, double xpos, double ypos)
+void mouse_callback8(GLFWwindow* window, double xpos, double ypos)
 {
-    if (firstMouse4)
+    if (firstMouse8)
     {
-        lastX4 = xpos;
-        lastY4 = ypos;
-        firstMouse4 = false;
+        lastX8 = xpos;
+        lastY8 = ypos;
+        firstMouse8 = false;
     }
 
-    float xoffset = xpos - lastX4;
-    float yoffset = lastY4 - ypos; // reversed since y-coordinates go from bottom to top
+    float xoffset = xpos - lastX8;
+    float yoffset = lastY8 - ypos; // reversed since y-coordinates go from bottom to top
 
-    lastX4 = xpos;
-    lastY4 = ypos;
+    lastX8 = xpos;
+    lastY8 = ypos;
 
-    camera4.ProcessMouseMovement(xoffset, yoffset);
+    camera8.ProcessMouseMovement(xoffset, yoffset);
 }
 
 // glfw: whenever the mouse scroll wheel scrolls, this callback is called
 // ----------------------------------------------------------------------
-void scroll_callback4(GLFWwindow* window, double xoffset, double yoffset)
+void scroll_callback8(GLFWwindow* window, double xoffset, double yoffset)
 {
-    camera4.ProcessMouseScroll(yoffset);
+    camera8.ProcessMouseScroll(yoffset);
 }
