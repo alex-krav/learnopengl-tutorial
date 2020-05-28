@@ -159,6 +159,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="basic_lightning_diffuse.cpp" />
+    <ClCompile Include="basic_lightning_move.cpp" />
     <ClCompile Include="basic_lightning_specular.cpp" />
     <ClCompile Include="camera_circle.cpp" />
     <ClCompile Include="camera_keyboard_dt.cpp" />
