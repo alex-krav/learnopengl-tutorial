@@ -60,6 +60,9 @@
     <ClCompile Include="transformations.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="coord_system.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stb_image.h">
@@ -101,6 +104,9 @@
       <Filter>Resource Files</Filter>
     </None>
     <None Include="shader_transform.vs">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="shader_projection.vs">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>
