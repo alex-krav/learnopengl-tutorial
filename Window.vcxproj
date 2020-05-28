@@ -160,6 +160,7 @@
   <ItemGroup>
     <ClCompile Include="camera_circle.cpp" />
     <ClCompile Include="camera_keyboard_dt.cpp" />
+    <ClCompile Include="camera_mouse_class.cpp" />
     <ClCompile Include="camera_mouse_zoom.cpp" />
     <ClCompile Include="coord_system.cpp" />
     <ClCompile Include="coord_system_depth.cpp" />
@@ -175,6 +176,7 @@
     <ClCompile Include="smiley_texture.cpp" />
     <ClCompile Include="smiley_texture_filtering.cpp" />
     <ClCompile Include="smiley_texture_wrapping.cpp" />
+    <ClCompile Include="camera.h" />
     <ClCompile Include="stb_image.cpp" />
     <ClCompile Include="transformations.cpp" />
     <ClCompile Include="triangle.cpp">
