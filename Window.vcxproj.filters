@@ -48,6 +48,9 @@
     <ClCompile Include="rectangle_texture.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="smiley_texture.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stb_image.h">
@@ -85,9 +88,18 @@
     <None Include="shader_texture.fs">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="shader_two_textures.fs">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="resources\textures\container.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="resources\textures\awesomeface.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="resources\textures\container_text.jpg">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

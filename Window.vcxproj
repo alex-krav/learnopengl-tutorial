@@ -166,6 +166,7 @@
     </ClCompile>
     <ClCompile Include="rectangle.cpp" />
     <ClCompile Include="attr_support.cpp" />
+    <ClCompile Include="smiley_texture.cpp" />
     <ClCompile Include="stb_image.cpp" />
     <ClCompile Include="triangle.cpp">
       <SubType>
@@ -196,12 +197,15 @@
     <None Include="shader_color.vs" />
     <None Include="shader_texture.fs" />
     <None Include="shader_texture.vs" />
+    <None Include="shader_two_textures.fs" />
     <None Include="shader_uniform_color.fs" />
     <None Include="shader_orange.fs" />
     <None Include="shader_uniform_position.vs" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="resources\textures\awesomeface.png" />
     <Image Include="resources\textures\container.jpg" />
+    <Image Include="resources\textures\container_text.jpg" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
