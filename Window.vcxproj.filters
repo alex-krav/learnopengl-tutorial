@@ -96,6 +96,9 @@
     <ClCompile Include="basic_lightning_move.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="basic_lightning_view_space.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stb_image.h">
@@ -167,6 +170,12 @@
       <Filter>Resource Files</Filter>
     </None>
     <None Include="basic_lightning_specular.fs">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="basic_lightning_view.vs">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="basic_lightning_view.fs">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>
