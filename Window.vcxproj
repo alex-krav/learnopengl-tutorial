@@ -158,6 +158,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="camera_circle.cpp" />
     <ClCompile Include="coord_system.cpp" />
     <ClCompile Include="coord_system_depth.cpp" />
     <ClCompile Include="coord_system_multiple.cpp" />
