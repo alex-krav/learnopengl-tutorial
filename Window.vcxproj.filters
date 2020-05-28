@@ -84,6 +84,9 @@
     <ClCompile Include="camera_mouse_class.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="colors.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stb_image.h">
@@ -128,6 +131,15 @@
       <Filter>Resource Files</Filter>
     </None>
     <None Include="shader_texture_projection.vs">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="shader_projection.vs">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="shader_light.fs">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="shader_white.fs">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>

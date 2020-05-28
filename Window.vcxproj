@@ -162,6 +162,7 @@
     <ClCompile Include="camera_keyboard_dt.cpp" />
     <ClCompile Include="camera_mouse_class.cpp" />
     <ClCompile Include="camera_mouse_zoom.cpp" />
+    <ClCompile Include="colors.cpp" />
     <ClCompile Include="coord_system.cpp" />
     <ClCompile Include="coord_system_depth.cpp" />
     <ClCompile Include="coord_system_multiple.cpp" />
@@ -206,6 +207,8 @@
     <None Include="shader_in_color.fs" />
     <None Include="shader.vs" />
     <None Include="shader_color.vs" />
+    <None Include="shader_light.fs" />
+    <None Include="shader_projection.vs" />
     <None Include="shader_texture_projection.vs" />
     <None Include="shader_texture.fs" />
     <None Include="shader_texture.vs" />
@@ -214,6 +217,7 @@
     <None Include="shader_uniform_color.fs" />
     <None Include="shader_orange.fs" />
     <None Include="shader_uniform_position.vs" />
+    <None Include="shader_white.fs" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="resources\textures\awesomeface.png" />

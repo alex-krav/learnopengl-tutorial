@@ -15,7 +15,7 @@ bool firstMouse2 = true;
 float deltaTime2 = 0.0f;	// time between current frame and last frame
 float lastFrame2 = 0.0f;
 
-int main()
+int main_mouse_class()
 {
     GLFWwindow* window;
     try {
