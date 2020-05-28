@@ -206,7 +206,7 @@
     <None Include="shader_in_color.fs" />
     <None Include="shader.vs" />
     <None Include="shader_color.vs" />
-    <None Include="shader_projection.vs" />
+    <None Include="shader_texture_projection.vs" />
     <None Include="shader_texture.fs" />
     <None Include="shader_texture.vs" />
     <None Include="shader_transform.vs" />

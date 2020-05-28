@@ -127,7 +127,7 @@
     <None Include="shader_transform.vs">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="shader_projection.vs">
+    <None Include="shader_texture_projection.vs">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>

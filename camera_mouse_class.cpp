@@ -30,7 +30,7 @@ int main()
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
     glEnable(GL_DEPTH_TEST);
 
-    Shader ourShader("shader_projection.vs", "shader_two_textures.fs");
+    Shader ourShader("shader_texture_projection.vs", "shader_two_textures.fs");
 
     // set up vertex data (and buffer(s)) and configure vertex attributes
     // ------------------------------------------------------------------

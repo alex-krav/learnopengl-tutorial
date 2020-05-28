@@ -10,7 +10,7 @@ int main_coord_depth()
     catch (std::exception& e) {
         return -1;
     }
-    Shader ourShader("shader_projection.vs", "shader_two_textures.fs");
+    Shader ourShader("shader_texture_projection.vs", "shader_two_textures.fs");
     // configure global opengl state
     // -----------------------------
     glEnable(GL_DEPTH_TEST);

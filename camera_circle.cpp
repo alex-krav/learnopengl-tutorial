@@ -13,7 +13,7 @@ int main_cam_circle()
 
     glEnable(GL_DEPTH_TEST);
 
-    Shader ourShader("shader_projection.vs", "shader_two_textures.fs");
+    Shader ourShader("shader_texture_projection.vs", "shader_two_textures.fs");
 
     // set up vertex data (and buffer(s)) and configure vertex attributes
     // ------------------------------------------------------------------
