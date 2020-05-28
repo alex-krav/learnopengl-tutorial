@@ -159,6 +159,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="coord_system.cpp" />
+    <ClCompile Include="coord_system_depth.cpp" />
     <ClCompile Include="functions.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="rectangle_texture.cpp">
