@@ -1,24 +1,24 @@
 #include "functions.h"
 #include <iostream>
 
-void mouse_callback7(GLFWwindow* window, double xpos, double ypos);
-void scroll_callback7(GLFWwindow* window, double xoffset, double yoffset);
-void processInput7(GLFWwindow* window);
+void mouse_callback8(GLFWwindow* window, double xpos, double ypos);
+void scroll_callback8(GLFWwindow* window, double xoffset, double yoffset);
+void processInput8(GLFWwindow* window);
 
 // camera
-Camera camera7(glm::vec3(0.0f, 0.0f, 3.0f));
-float lastX7 = SCR_WIDTH / 2.0f;
-float lastY7 = SCR_HEIGHT / 2.0f;
-bool firstMouse7 = true;
+Camera camera8(glm::vec3(0.0f, 0.0f, 3.0f));
+float lastX8 = SCR_WIDTH / 2.0f;
+float lastY8 = SCR_HEIGHT / 2.0f;
+bool firstMouse8 = true;
 
 // timing
-float deltaTime7 = 0.0f;
-float lastFrame7 = 0.0f;
+float deltaTime8 = 0.0f;
+float lastFrame8 = 0.0f;
 
 // lighting
-glm::vec3 lightPos7(1.2f, 1.0f, 2.0f);
+glm::vec3 lightPos8(1.2f, 1.0f, 2.0f);
 
-int main_view()
+int main()
 {
     GLFWwindow* window;
     try {
@@ -27,13 +27,13 @@ int main_view()
     catch (std::exception& e) {
         return -1;
     }
-    glfwSetCursorPosCallback(window, mouse_callback7);
-    glfwSetScrollCallback(window, scroll_callback7);
+    glfwSetCursorPosCallback(window, mouse_callback8);
+    glfwSetScrollCallback(window, scroll_callback8);
     // tell GLFW to capture our mouse
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
     glEnable(GL_DEPTH_TEST);
 
-    Shader lightingShader("basic_lightning_view.vs", "basic_lightning_view.fs");
+    Shader lightingShader("basic_lightning_gourand.vs", "basic_lightning_gourand.fs");
     Shader lightCubeShader("light_cube.vs", "light_cube.fs");
 
     // set up vertex data (and buffer(s)) and configure vertex attributes
@@ -117,12 +117,12 @@ int main_view()
         // per-frame time logic
         // --------------------
         float currentFrame = glfwGetTime();
-        deltaTime7 = currentFrame - lastFrame7;
-        lastFrame7 = currentFrame;
+        deltaTime8 = currentFrame - lastFrame8;
+        lastFrame8 = currentFrame;
 
         // input
         // -----
-        processInput7(window);
+        processInput8(window);
 
         // render
         // ------
@@ -133,12 +133,12 @@ int main_view()
         lightingShader.use();
         lightingShader.setVec3("objectColor", 1.0f, 0.5f, 0.31f);
         lightingShader.setVec3("lightColor", 1.0f, 1.0f, 1.0f);
-        lightingShader.setVec3("lightPos", lightPos7);
-        lightingShader.setVec3("viewPos", camera7.Position);
+        lightingShader.setVec3("lightPos", lightPos8);
+        lightingShader.setVec3("viewPos", camera8.Position);
 
         // view/projection transformations
-        glm::mat4 projection = glm::perspective(glm::radians(camera7.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
-        glm::mat4 view = camera7.GetViewMatrix();
+        glm::mat4 projection = glm::perspective(glm::radians(camera8.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
+        glm::mat4 view = camera8.GetViewMatrix();
         lightingShader.setMat4("projection", projection);
         lightingShader.setMat4("view", view);
 
@@ -156,7 +156,7 @@ int main_view()
         lightCubeShader.setMat4("projection", projection);
         lightCubeShader.setMat4("view", view);
         model = glm::mat4(1.0f);
-        model = glm::translate(model, lightPos7);
+        model = glm::translate(model, lightPos8);
         model = glm::scale(model, glm::vec3(0.2f)); // a smaller cube
         lightCubeShader.setMat4("model", model);
 
@@ -184,44 +184,44 @@ int main_view()
 
 // process all input: query GLFW whether relevant keys are pressed/released this frame and react accordingly
 // ---------------------------------------------------------------------------------------------------------
-void processInput7(GLFWwindow* window)
+void processInput8(GLFWwindow* window)
 {
     if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
         glfwSetWindowShouldClose(window, true);
 
     if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
-        camera7.ProcessKeyboard(FORWARD, deltaTime7);
+        camera8.ProcessKeyboard(FORWARD, deltaTime8);
     if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
-        camera7.ProcessKeyboard(BACKWARD, deltaTime7);
+        camera8.ProcessKeyboard(BACKWARD, deltaTime8);
     if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
-        camera7.ProcessKeyboard(LEFT, deltaTime7);
+        camera8.ProcessKeyboard(LEFT, deltaTime8);
     if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
-        camera7.ProcessKeyboard(RIGHT, deltaTime7);
+        camera8.ProcessKeyboard(RIGHT, deltaTime8);
 }
 
 // glfw: whenever the mouse moves, this callback is called
 // -------------------------------------------------------
-void mouse_callback7(GLFWwindow* window, double xpos, double ypos)
+void mouse_callback8(GLFWwindow* window, double xpos, double ypos)
 {
-    if (firstMouse7)
+    if (firstMouse8)
     {
-        lastX7 = xpos;
-        lastY7 = ypos;
-        firstMouse7 = false;
+        lastX8 = xpos;
+        lastY8 = ypos;
+        firstMouse8 = false;
     }
 
-    float xoffset = xpos - lastX7;
-    float yoffset = lastY7 - ypos; // reversed since y-coordinates go from bottom to top
+    float xoffset = xpos - lastX8;
+    float yoffset = lastY8 - ypos; // reversed since y-coordinates go from bottom to top
 
-    lastX7 = xpos;
-    lastY7 = ypos;
+    lastX8 = xpos;
+    lastY8 = ypos;
 
-    camera7.ProcessMouseMovement(xoffset, yoffset);
+    camera8.ProcessMouseMovement(xoffset, yoffset);
 }
 
 // glfw: whenever the mouse scroll wheel scrolls, this callback is called
 // ----------------------------------------------------------------------
-void scroll_callback7(GLFWwindow* window, double xoffset, double yoffset)
+void scroll_callback8(GLFWwindow* window, double xoffset, double yoffset)
 {
-    camera7.ProcessMouseScroll(yoffset);
+    camera8.ProcessMouseScroll(yoffset);
 }
