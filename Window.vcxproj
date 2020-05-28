@@ -158,6 +158,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="basic_lightning_diffuse.cpp" />
+    <ClCompile Include="basic_lightning_specular.cpp" />
     <ClCompile Include="camera_circle.cpp" />
     <ClCompile Include="camera_keyboard_dt.cpp" />
     <ClCompile Include="camera_mouse_class.cpp" />
@@ -204,6 +206,12 @@
     <ClInclude Include="stb_image.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="basic_lightning_diffuse.fs" />
+    <None Include="basic_lightning_diffuse.vs" />
+    <None Include="basic_lightning_specular.fs" />
+    <None Include="basic_lightning_specular.vs" />
+    <None Include="light_cube.fs" />
+    <None Include="light_cube.vs" />
     <None Include="shader_in_color.fs" />
     <None Include="shader.vs" />
     <None Include="shader_color.vs" />
