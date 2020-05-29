@@ -129,6 +129,9 @@
     <ClCompile Include="src\light_casters\light_casters_sport_soft.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\light_casters\multiple_lights.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="headers\camera.h">
@@ -180,6 +183,7 @@
     <None Include="shaders\light_casters_point.fs" />
     <None Include="shaders\light_casters_flashlight.fs" />
     <None Include="shaders\light_casters_spot_soft.fs" />
+    <None Include="shaders\multiple_lights.fs" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="resources\textures\container.jpg">

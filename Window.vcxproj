@@ -171,6 +171,7 @@
     <ClCompile Include="src\light_casters\light_casters_point.cpp" />
     <ClCompile Include="src\light_casters\light_casters_flashlight.cpp" />
     <ClCompile Include="src\light_casters\light_casters_sport_soft.cpp" />
+    <ClCompile Include="src\light_casters\multiple_lights.cpp" />
     <ClCompile Include="src\materials\lighting_maps_diffuse.cpp" />
     <ClCompile Include="src\materials\lighting_maps_emission.cpp" />
     <ClCompile Include="src\materials\lighting_maps_specular.cpp" />
@@ -225,6 +226,7 @@
     <None Include="shaders\light_casters.fs" />
     <None Include="shaders\material.fs" />
     <None Include="shaders\material.vs" />
+    <None Include="shaders\multiple_lights.fs" />
     <None Include="shaders\shader.vs" />
     <None Include="shaders\shader_color.vs" />
     <None Include="shaders\shader_in_color.fs" />
