@@ -1,7 +1,7 @@
 #include "../../headers/functions.h"
 #include <iostream>
 
-namespace ligthCastFlashlightNS {
+namespace ligthCastSpotSoftNS {
     void mouse_callback(GLFWwindow* window, double xpos, double ypos);
     void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
     void processInputWASD(GLFWwindow* window);
@@ -16,9 +16,9 @@ namespace ligthCastFlashlightNS {
     float deltaTime = 0.0f;
     float lastFrame = 0.0f;
 }
-using namespace ligthCastFlashlightNS;
+using namespace ligthCastSpotSoftNS;
 
-int main_flashlight()
+int main()
 {
     GLFWwindow* window;
     try {
@@ -33,7 +33,7 @@ int main_flashlight()
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
     glEnable(GL_DEPTH_TEST);
 
-    Shader lightingShader("shaders/lighting_maps.vs", "shaders/light_casters_flashlight.fs");
+    Shader lightingShader("shaders/lighting_maps.vs", "shaders/light_casters_spot_soft.fs");
     Shader lightCubeShader("shaders/light_cube.vs", "shaders/light_cube.fs");
 
     // set up vertex data (and buffer(s)) and configure vertex attributes
@@ -157,6 +157,7 @@ int main_flashlight()
         lightingShader.setVec3("light.position", camera.Position);
         lightingShader.setVec3("light.direction", camera.Front);
         lightingShader.setFloat("light.cutOff", glm::cos(glm::radians(12.5f)));
+        lightingShader.setFloat("light.outerCutOff", glm::cos(glm::radians(17.5f)));
         lightingShader.setVec3("viewPos", camera.Position);
 
         // light properties
@@ -203,7 +204,6 @@ int main_flashlight()
             glDrawArrays(GL_TRIANGLES, 0, 36);
         }
 
-
         // again, a lamp object is weird when we only have a spot light, don't render the light object
         // lightCubeShader.use();
         // lightCubeShader.setMat4("projection", projection);
@@ -235,7 +235,7 @@ int main_flashlight()
     return 0;
 }
 
-namespace ligthCastFlashlightNS {
+namespace ligthCastSpotSoftNS {
     // process all input: query GLFW whether relevant keys are pressed/released this frame and react accordingly
     // ---------------------------------------------------------------------------------------------------------
     void processInputWASD(GLFWwindow* window)

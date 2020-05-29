@@ -123,7 +123,10 @@
     <ClCompile Include="src\light_casters\light_casters_point.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\light_casters\light_caster_flashlight.cpp">
+    <ClCompile Include="src\light_casters\light_casters_flashlight.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\light_casters\light_casters_sport_soft.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -176,6 +179,7 @@
     <None Include="shaders\light_casters.fs" />
     <None Include="shaders\light_casters_point.fs" />
     <None Include="shaders\light_casters_flashlight.fs" />
+    <None Include="shaders\light_casters_spot_soft.fs" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="resources\textures\container.jpg">

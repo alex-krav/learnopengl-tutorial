@@ -169,7 +169,8 @@
     <ClCompile Include="src\lightning\colors.cpp" />
     <ClCompile Include="src\light_casters\light_casters_directional.cpp" />
     <ClCompile Include="src\light_casters\light_casters_point.cpp" />
-    <ClCompile Include="src\light_casters\light_caster_flashlight.cpp" />
+    <ClCompile Include="src\light_casters\light_casters_flashlight.cpp" />
+    <ClCompile Include="src\light_casters\light_casters_sport_soft.cpp" />
     <ClCompile Include="src\materials\lighting_maps_diffuse.cpp" />
     <ClCompile Include="src\materials\lighting_maps_emission.cpp" />
     <ClCompile Include="src\materials\lighting_maps_specular.cpp" />
@@ -218,6 +219,7 @@
     <None Include="shaders\lighting_maps_specular_inverse.fs" />
     <None Include="shaders\light_casters_flashlight.fs" />
     <None Include="shaders\light_casters_point.fs" />
+    <None Include="shaders\light_casters_spot_soft.fs" />
     <None Include="shaders\light_cube.fs" />
     <None Include="shaders\light_cube.vs" />
     <None Include="shaders\light_casters.fs" />
