@@ -123,6 +123,9 @@
     <ClCompile Include="src\light_casters\light_casters_point.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\light_casters\light_caster_flashlight.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="headers\camera.h">
@@ -172,6 +175,7 @@
     <None Include="shaders\lighting_maps_emission.fs" />
     <None Include="shaders\light_casters.fs" />
     <None Include="shaders\light_casters_point.fs" />
+    <None Include="shaders\light_casters_flashlight.fs" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="resources\textures\container.jpg">
