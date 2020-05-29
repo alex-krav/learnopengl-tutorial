@@ -1,7 +1,7 @@
 #include "../../headers/functions.h"
 #include <iostream>
 
-namespace ligthMapsNS {
+namespace ligthMapSpecNS {
     void mouse_callback(GLFWwindow* window, double xpos, double ypos);
     void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
     void processInputWASD(GLFWwindow* window);
@@ -19,9 +19,9 @@ namespace ligthMapsNS {
     // lighting
     glm::vec3 lightPos(1.2f, 1.0f, 2.0f);
 }
-using namespace ligthMapsNS;
+using namespace ligthMapSpecNS;
 
-int main_light_map_diff()
+int main()
 {
     GLFWwindow* window;
     try {
@@ -36,7 +36,7 @@ int main_light_map_diff()
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
     glEnable(GL_DEPTH_TEST);
 
-    Shader lightingShader("shaders/lighting_maps.vs", "shaders/lighting_maps_diffuse.fs");
+    Shader lightingShader("shaders/lighting_maps.vs", "shaders/lighting_maps_specular.fs");
     Shader lightCubeShader("shaders/light_cube.vs", "shaders/light_cube.fs");
 
     // set up vertex data (and buffer(s)) and configure vertex attributes
@@ -114,11 +114,13 @@ int main_light_map_diff()
     // load textures (we now use a utility function to keep the code more organized)
     // -----------------------------------------------------------------------------
     unsigned int diffuseMap = loadTexture("resources/textures/container2.png");
+    unsigned int specularMap = loadTexture("resources/textures/container2_specular.png");
 
     // shader configuration
     // --------------------
     lightingShader.use();
     lightingShader.setInt("material.diffuse", 0);
+    lightingShader.setInt("material.specular", 1);
 
 
     // render loop
@@ -151,7 +153,6 @@ int main_light_map_diff()
         lightingShader.setVec3("light.specular", 1.0f, 1.0f, 1.0f);
 
         // material properties
-        lightingShader.setVec3("material.specular", 0.5f, 0.5f, 0.5f);
         lightingShader.setFloat("material.shininess", 64.0f);
 
         // view/projection transformations
@@ -167,6 +168,9 @@ int main_light_map_diff()
         // bind diffuse map
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, diffuseMap);
+        // bind specular map
+        glActiveTexture(GL_TEXTURE1);
+        glBindTexture(GL_TEXTURE_2D, specularMap);
 
         // render the cube
         glBindVertexArray(cubeVAO);
@@ -204,7 +208,8 @@ int main_light_map_diff()
     return 0;
 }
 
-namespace ligthMapsNS {
+namespace ligthMapSpecNS {
+
     // process all input: query GLFW whether relevant keys are pressed/released this frame and react accordingly
     // ---------------------------------------------------------------------------------------------------------
     void processInputWASD(GLFWwindow* window)

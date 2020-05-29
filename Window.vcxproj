@@ -168,6 +168,7 @@
     <ClCompile Include="src\lightning\basic_lightning_view_space.cpp" />
     <ClCompile Include="src\lightning\colors.cpp" />
     <ClCompile Include="src\materials\lighting_maps_diffuse.cpp" />
+    <ClCompile Include="src\materials\lighting_maps_specular.cpp" />
     <ClCompile Include="src\materials\materials.cpp" />
     <ClCompile Include="src\materials\real_material.cpp" />
     <ClCompile Include="src\texture\rectangle_texture.cpp" />
@@ -205,8 +206,9 @@
     <None Include="shaders\basic_lightning_specular.vs" />
     <None Include="shaders\basic_lightning_view.fs" />
     <None Include="shaders\basic_lightning_view.vs" />
-    <None Include="shaders\lighting_maps.fs" />
+    <None Include="shaders\lighting_maps_diffuse.fs" />
     <None Include="shaders\lighting_maps.vs" />
+    <None Include="shaders\lighting_maps_specular.fs" />
     <None Include="shaders\light_cube.fs" />
     <None Include="shaders\light_cube.vs" />
     <None Include="shaders\material.fs" />

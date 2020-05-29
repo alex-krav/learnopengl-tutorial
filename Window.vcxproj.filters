@@ -108,6 +108,9 @@
     <ClCompile Include="src\materials\lighting_maps_diffuse.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\materials\lighting_maps_specular.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="headers\camera.h">
@@ -150,7 +153,8 @@
     <None Include="shaders\shader_white.fs" />
     <None Include="shaders\material.vs" />
     <None Include="shaders\material.fs" />
-    <None Include="shaders\lighting_maps.fs" />
+    <None Include="shaders\lighting_maps_diffuse.fs" />
+    <None Include="shaders\lighting_maps_specular.fs" />
     <None Include="shaders\lighting_maps.vs" />
   </ItemGroup>
   <ItemGroup>
