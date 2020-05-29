@@ -167,6 +167,7 @@
     <ClCompile Include="src\lightning\basic_lightning_specular.cpp" />
     <ClCompile Include="src\lightning\basic_lightning_view_space.cpp" />
     <ClCompile Include="src\lightning\colors.cpp" />
+    <ClCompile Include="src\materials\materials.cpp" />
     <ClCompile Include="src\texture\rectangle_texture.cpp" />
     <ClCompile Include="src\texture\smiley_texture.cpp" />
     <ClCompile Include="src\texture\smiley_texture_filtering.cpp" />
@@ -192,6 +193,7 @@
     <ClInclude Include="headers\functions.h" />
     <ClInclude Include="headers\shader.h" />
     <ClInclude Include="headers\stb_image.h" />
+    <ClInclude Include="src\materials\materials.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="shaders\basic_lightning_diffuse.fs" />
@@ -204,6 +206,8 @@
     <None Include="shaders\basic_lightning_view.vs" />
     <None Include="shaders\light_cube.fs" />
     <None Include="shaders\light_cube.vs" />
+    <None Include="shaders\material.fs" />
+    <None Include="shaders\material.vs" />
     <None Include="shaders\shader.vs" />
     <None Include="shaders\shader_color.vs" />
     <None Include="shaders\shader_in_color.fs" />

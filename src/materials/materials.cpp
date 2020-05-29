@@ -1,24 +1,29 @@
 #include "../../headers/functions.h"
 #include <iostream>
 
-void mouse_callback8(GLFWwindow* window, double xpos, double ypos);
-void scroll_callback8(GLFWwindow* window, double xoffset, double yoffset);
-void processInput8(GLFWwindow* window);
+namespace materialsNS {
 
-// camera
-Camera camera8(glm::vec3(0.0f, 0.0f, 3.0f));
-float lastX8 = SCR_WIDTH / 2.0f;
-float lastY8 = SCR_HEIGHT / 2.0f;
-bool firstMouse8 = true;
+    void mouse_callback(GLFWwindow* window, double xpos, double ypos);
+    void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
+    void processInputNew(GLFWwindow* window);
 
-// timing
-float deltaTime8 = 0.0f;
-float lastFrame8 = 0.0f;
+    // camera
+    Camera camera(glm::vec3(0.0f, 0.0f, 3.0f));
+    float lastX = SCR_WIDTH / 2.0f;
+    float lastY = SCR_HEIGHT / 2.0f;
+    bool firstMouse = true;
 
-// lighting
-glm::vec3 lightPos8(1.2f, 1.0f, 2.0f);
+    // timing
+    float deltaTime = 0.0f;
+    float lastFrame = 0.0f;
 
-int main_gour()
+    // lighting
+    glm::vec3 lightPos(1.2f, 1.0f, 2.0f);
+
+}
+using namespace materialsNS;
+
+int main()
 {
     GLFWwindow* window;
     try {
@@ -27,13 +32,13 @@ int main_gour()
     catch (std::exception& e) {
         return -1;
     }
-    glfwSetCursorPosCallback(window, mouse_callback8);
-    glfwSetScrollCallback(window, scroll_callback8);
+    glfwSetCursorPosCallback(window, mouse_callback);
+    glfwSetScrollCallback(window, scroll_callback);
     // tell GLFW to capture our mouse
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
     glEnable(GL_DEPTH_TEST);
 
-    Shader lightingShader("shaders/basic_lightning_gourand.vs", "shaders/basic_lightning_gourand.fs");
+    Shader lightingShader("shaders/material.vs", "shaders/material.fs");
     Shader lightCubeShader("shaders/light_cube.vs", "shaders/light_cube.fs");
 
     // set up vertex data (and buffer(s)) and configure vertex attributes
@@ -117,12 +122,12 @@ int main_gour()
         // per-frame time logic
         // --------------------
         float currentFrame = glfwGetTime();
-        deltaTime8 = currentFrame - lastFrame8;
-        lastFrame8 = currentFrame;
+        deltaTime = currentFrame - lastFrame;
+        lastFrame = currentFrame;
 
         // input
         // -----
-        processInput8(window);
+        processInputNew(window);
 
         // render
         // ------
@@ -131,14 +136,29 @@ int main_gour()
 
         // be sure to activate shader when setting uniforms/drawing objects
         lightingShader.use();
-        lightingShader.setVec3("objectColor", 1.0f, 0.5f, 0.31f);
-        lightingShader.setVec3("lightColor", 1.0f, 1.0f, 1.0f);
-        lightingShader.setVec3("lightPos", lightPos8);
-        lightingShader.setVec3("viewPos", camera8.Position);
+        lightingShader.setVec3("light.position", lightPos);
+        lightingShader.setVec3("viewPos", camera.Position);
+
+        // light properties
+        glm::vec3 lightColor;
+        lightColor.x = sin(glfwGetTime() * 2.0f);
+        lightColor.y = sin(glfwGetTime() * 0.7f);
+        lightColor.z = sin(glfwGetTime() * 1.3f);
+        glm::vec3 diffuseColor = lightColor * glm::vec3(0.5f); // decrease the influence
+        glm::vec3 ambientColor = diffuseColor * glm::vec3(0.2f); // low influence
+        lightingShader.setVec3("light.ambient", ambientColor);
+        lightingShader.setVec3("light.diffuse", diffuseColor);
+        lightingShader.setVec3("light.specular", 1.0f, 1.0f, 1.0f);
+
+        // material properties
+        lightingShader.setVec3("material.ambient", 1.0f, 0.5f, 0.31f);
+        lightingShader.setVec3("material.diffuse", 1.0f, 0.5f, 0.31f);
+        lightingShader.setVec3("material.specular", 0.5f, 0.5f, 0.5f); // specular lighting doesn't have full effect on this object's material
+        lightingShader.setFloat("material.shininess", 32.0f);
 
         // view/projection transformations
-        glm::mat4 projection = glm::perspective(glm::radians(camera8.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
-        glm::mat4 view = camera8.GetViewMatrix();
+        glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
+        glm::mat4 view = camera.GetViewMatrix();
         lightingShader.setMat4("projection", projection);
         lightingShader.setMat4("view", view);
 
@@ -156,7 +176,7 @@ int main_gour()
         lightCubeShader.setMat4("projection", projection);
         lightCubeShader.setMat4("view", view);
         model = glm::mat4(1.0f);
-        model = glm::translate(model, lightPos8);
+        model = glm::translate(model, lightPos);
         model = glm::scale(model, glm::vec3(0.2f)); // a smaller cube
         lightCubeShader.setMat4("model", model);
 
@@ -182,46 +202,48 @@ int main_gour()
     return 0;
 }
 
-// process all input: query GLFW whether relevant keys are pressed/released this frame and react accordingly
-// ---------------------------------------------------------------------------------------------------------
-void processInput8(GLFWwindow* window)
-{
-    if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
-        glfwSetWindowShouldClose(window, true);
-
-    if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
-        camera8.ProcessKeyboard(FORWARD, deltaTime8);
-    if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
-        camera8.ProcessKeyboard(BACKWARD, deltaTime8);
-    if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
-        camera8.ProcessKeyboard(LEFT, deltaTime8);
-    if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
-        camera8.ProcessKeyboard(RIGHT, deltaTime8);
-}
-
-// glfw: whenever the mouse moves, this callback is called
-// -------------------------------------------------------
-void mouse_callback8(GLFWwindow* window, double xpos, double ypos)
-{
-    if (firstMouse8)
+namespace materialsNS {
+    // process all input: query GLFW whether relevant keys are pressed/released this frame and react accordingly
+    // ---------------------------------------------------------------------------------------------------------
+    void processInputNew(GLFWwindow* window)
     {
-        lastX8 = xpos;
-        lastY8 = ypos;
-        firstMouse8 = false;
+        if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+            glfwSetWindowShouldClose(window, true);
+
+        if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
+            camera.ProcessKeyboard(FORWARD, deltaTime);
+        if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
+            camera.ProcessKeyboard(BACKWARD, deltaTime);
+        if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
+            camera.ProcessKeyboard(LEFT, deltaTime);
+        if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
+            camera.ProcessKeyboard(RIGHT, deltaTime);
     }
 
-    float xoffset = xpos - lastX8;
-    float yoffset = lastY8 - ypos; // reversed since y-coordinates go from bottom to top
+    // glfw: whenever the mouse moves, this callback is called
+    // -------------------------------------------------------
+    void mouse_callback(GLFWwindow* window, double xpos, double ypos)
+    {
+        if (firstMouse)
+        {
+            lastX = xpos;
+            lastY = ypos;
+            firstMouse = false;
+        }
 
-    lastX8 = xpos;
-    lastY8 = ypos;
+        float xoffset = xpos - lastX;
+        float yoffset = lastY - ypos; // reversed since y-coordinates go from bottom to top
 
-    camera8.ProcessMouseMovement(xoffset, yoffset);
-}
+        lastX = xpos;
+        lastY = ypos;
 
-// glfw: whenever the mouse scroll wheel scrolls, this callback is called
-// ----------------------------------------------------------------------
-void scroll_callback8(GLFWwindow* window, double xoffset, double yoffset)
-{
-    camera8.ProcessMouseScroll(yoffset);
+        camera.ProcessMouseMovement(xoffset, yoffset);
+    }
+
+    // glfw: whenever the mouse scroll wheel scrolls, this callback is called
+    // ----------------------------------------------------------------------
+    void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
+    {
+        camera.ProcessMouseScroll(yoffset);
+    }
 }
