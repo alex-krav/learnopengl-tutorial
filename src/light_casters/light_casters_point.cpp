@@ -1,7 +1,7 @@
 #include "../../headers/functions.h"
 #include <iostream>
 
-namespace ligthCastersNS {
+namespace lightCastPointNS {
     void mouse_callback(GLFWwindow* window, double xpos, double ypos);
     void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
     void processInputWASD(GLFWwindow* window);
@@ -15,10 +15,13 @@ namespace ligthCastersNS {
     // timing
     float deltaTime = 0.0f;
     float lastFrame = 0.0f;
-}
-using namespace ligthCastersNS;
 
-int main_cast_dir()
+    // lighting
+    glm::vec3 lightPos(1.2f, 1.0f, 2.0f);
+}
+using namespace lightCastPointNS;
+
+int main()
 {
     GLFWwindow* window;
     try {
@@ -33,7 +36,7 @@ int main_cast_dir()
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
     glEnable(GL_DEPTH_TEST);
 
-    Shader lightingShader("shaders/lighting_maps.vs", "shaders/light_casters.fs");
+    Shader lightingShader("shaders/lighting_maps.vs", "shaders/light_casters_point.fs");
     Shader lightCubeShader("shaders/light_cube.vs", "shaders/light_cube.fs");
 
     // set up vertex data (and buffer(s)) and configure vertex attributes
@@ -154,13 +157,16 @@ int main_cast_dir()
 
         // be sure to activate shader when setting uniforms/drawing objects
         lightingShader.use();
-        lightingShader.setVec3("light.direction", -0.2f, -1.0f, -0.3f);
+        lightingShader.setVec3("light.position", lightPos);
         lightingShader.setVec3("viewPos", camera.Position);
 
         // light properties
         lightingShader.setVec3("light.ambient", 0.2f, 0.2f, 0.2f);
         lightingShader.setVec3("light.diffuse", 0.5f, 0.5f, 0.5f);
         lightingShader.setVec3("light.specular", 1.0f, 1.0f, 1.0f);
+        lightingShader.setFloat("light.constant", 1.0f);
+        lightingShader.setFloat("light.linear", 0.09f);
+        lightingShader.setFloat("light.quadratic", 0.032f);
 
         // material properties
         lightingShader.setFloat("material.shininess", 32.0f);
@@ -182,10 +188,6 @@ int main_cast_dir()
         glActiveTexture(GL_TEXTURE1);
         glBindTexture(GL_TEXTURE_2D, specularMap);
 
-        // render the cube
-        // glBindVertexArray(cubeVAO);
-        // glDrawArrays(GL_TRIANGLES, 0, 36);*/
-
         // render containers
         glBindVertexArray(cubeVAO);
         for (unsigned int i = 0; i < 10; i++)
@@ -201,17 +203,17 @@ int main_cast_dir()
         }
 
 
-        // a lamp object is weird when we only have a directional light, don't render the light object
-        // lightCubeShader.use();
-        // lightCubeShader.setMat4("projection", projection);
-        // lightCubeShader.setMat4("view", view);
-        // model = glm::mat4(1.0f);
-        // model = glm::translate(model, lightPos);
-        // model = glm::scale(model, glm::vec3(0.2f)); // a smaller cube
-        // lightCubeShader.setMat4("model", model);
+        // also draw the lamp object
+        lightCubeShader.use();
+        lightCubeShader.setMat4("projection", projection);
+        lightCubeShader.setMat4("view", view);
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, lightPos);
+        model = glm::scale(model, glm::vec3(0.2f)); // a smaller cube
+        lightCubeShader.setMat4("model", model);
 
-        // glBindVertexArray(lightCubeVAO);
-        // glDrawArrays(GL_TRIANGLES, 0, 36);
+        glBindVertexArray(lightCubeVAO);
+        glDrawArrays(GL_TRIANGLES, 0, 36);
 
 
         // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
@@ -232,7 +234,7 @@ int main_cast_dir()
     return 0;
 }
 
-namespace ligthCastersNS {
+namespace lightCastPointNS {
     // process all input: query GLFW whether relevant keys are pressed/released this frame and react accordingly
     // ---------------------------------------------------------------------------------------------------------
     void processInputWASD(GLFWwindow* window)
