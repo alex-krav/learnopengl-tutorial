@@ -114,6 +114,9 @@
     <ClCompile Include="src\materials\lighting_maps_specular_inverse.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\materials\lighting_maps_emission.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="headers\camera.h">
@@ -160,6 +163,7 @@
     <None Include="shaders\lighting_maps_specular.fs" />
     <None Include="shaders\lighting_maps.vs" />
     <None Include="shaders\lighting_maps_specular_inverse.fs" />
+    <None Include="shaders\lighting_maps_emission.fs" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="resources\textures\container.jpg">
