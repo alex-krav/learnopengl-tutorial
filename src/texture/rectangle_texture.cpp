@@ -82,7 +82,7 @@ int main_rect_text()
     {
         // input
         // -----
-        processInput(window);
+        processInputEsc(window);
 
         // render
         // ------

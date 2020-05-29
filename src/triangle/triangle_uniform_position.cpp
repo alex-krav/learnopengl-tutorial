@@ -45,7 +45,7 @@ int main_tri_uni()
     {
         // input
         // -----
-        processInput(window);
+        processInputEsc(window);
 
         // render
         // ------

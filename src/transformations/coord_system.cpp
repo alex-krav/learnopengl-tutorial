@@ -110,7 +110,7 @@ int main_coord()
     {
         // input
         // -----
-        processInput(window);
+        processInputEsc(window);
 
         // render
         // ------

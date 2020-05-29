@@ -154,7 +154,7 @@ int main_coord_multi()
     {
         // input
         // -----
-        processInput(window);
+        processInputEsc(window);
 
         // render
         // ------

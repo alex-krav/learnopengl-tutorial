@@ -46,7 +46,7 @@ int main_uni_col()
     {
         // input
         // -----
-        processInput(window);
+        processInputEsc(window);
 
         // render
         // ------

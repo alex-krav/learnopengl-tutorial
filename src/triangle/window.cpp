@@ -17,7 +17,7 @@ int main_win()
     {
         // input
         // -----
-        processInput(window);
+        processInputEsc(window);
 
         // render
         // ------

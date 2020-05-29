@@ -116,7 +116,7 @@ int main_text_wrap()
     {
         // input
         // -----
-        processInput(window);
+        processInputEsc(window);
 
         // render
         // ------

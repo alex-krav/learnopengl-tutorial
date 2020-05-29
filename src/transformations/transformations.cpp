@@ -110,7 +110,7 @@ int main_transform()
     {
         // input
         // -----
-        processInput(window);
+        processInputEsc(window);
 
         // render
         // ------

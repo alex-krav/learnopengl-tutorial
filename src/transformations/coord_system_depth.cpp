@@ -141,7 +141,7 @@ int main_coord_depth()
     {
         // input
         // -----
-        processInput(window);
+        processInputEsc(window);
 
         // render
         // ------

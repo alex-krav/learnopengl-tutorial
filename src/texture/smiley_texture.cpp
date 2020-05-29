@@ -117,7 +117,7 @@ int main_smiley()
     {
         // input
         // -----
-        processInput(window);
+        processInputEsc(window);
 
         // render
         // ------

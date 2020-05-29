@@ -60,7 +60,7 @@ int main_rect()
     {
         // input
         // -----
-        processInput(window);
+        processInputEsc(window);
 
         // render
         // ------

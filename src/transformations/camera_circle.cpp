@@ -159,7 +159,7 @@ int main_cam()
     {
         // input
         // -----
-        processInput(window);
+        processInputEsc(window);
 
         // render
         // ------
