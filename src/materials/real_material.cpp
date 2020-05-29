@@ -1,7 +1,7 @@
 #include "../../headers/functions.h"
 #include <iostream>
 
-namespace materialsNS {
+namespace realMaterialsNS {
 
     void mouse_callback(GLFWwindow* window, double xpos, double ypos);
     void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
@@ -21,9 +21,9 @@ namespace materialsNS {
     glm::vec3 lightPos(1.2f, 1.0f, 2.0f);
 
 }
-using namespace materialsNS;
+using namespace realMaterialsNS;
 
-int main_materials()
+int main()
 {
     GLFWwindow* window;
     try {
@@ -140,20 +140,15 @@ int main_materials()
         lightingShader.setVec3("viewPos", camera.Position);
 
         // light properties
-        glm::vec3 lightColor;
-        lightColor.x = sin(glfwGetTime() * 2.0f);
-        lightColor.y = sin(glfwGetTime() * 0.7f);
-        lightColor.z = sin(glfwGetTime() * 1.3f);
-        glm::vec3 diffuseColor = lightColor * glm::vec3(0.5f); // decrease the influence
-        glm::vec3 ambientColor = diffuseColor * glm::vec3(0.2f); // low influence
-        lightingShader.setVec3("light.ambient", ambientColor);
-        lightingShader.setVec3("light.diffuse", diffuseColor);
+        lightingShader.setVec3("light.ambient", 1.0f, 1.0f, 1.0f); // note that all light colors are set at full intensity
+        lightingShader.setVec3("light.diffuse", 1.0f, 1.0f, 1.0f);
         lightingShader.setVec3("light.specular", 1.0f, 1.0f, 1.0f);
 
-        // material properties
-        lightingShader.setVec3("material.ambient", 1.0f, 0.5f, 0.31f);
-        lightingShader.setVec3("material.diffuse", 1.0f, 0.5f, 0.31f);
-        lightingShader.setVec3("material.specular", 0.5f, 0.5f, 0.5f); // specular lighting doesn't have full effect on this object's material
+        // material properties for GOLD
+        // http://devernay.free.fr/cours/opengl/materials.html
+        lightingShader.setVec3("material.ambient", 0.24725f, 0.1995f, 0.0745f);
+        lightingShader.setVec3("material.diffuse", 0.75164f, 0.60648f, 0.22648f);
+        lightingShader.setVec3("material.specular", 0.628281f, 0.555802f, 0.366065f); // specular lighting doesn't have full effect on this object's material
         lightingShader.setFloat("material.shininess", 32.0f);
 
         // view/projection transformations
@@ -202,7 +197,7 @@ int main_materials()
     return 0;
 }
 
-namespace materialsNS {
+namespace realMaterialsNS {
     // process all input: query GLFW whether relevant keys are pressed/released this frame and react accordingly
     // ---------------------------------------------------------------------------------------------------------
     void processInputNew(GLFWwindow* window)

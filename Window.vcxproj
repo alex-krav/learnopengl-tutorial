@@ -168,6 +168,7 @@
     <ClCompile Include="src\lightning\basic_lightning_view_space.cpp" />
     <ClCompile Include="src\lightning\colors.cpp" />
     <ClCompile Include="src\materials\materials.cpp" />
+    <ClCompile Include="src\materials\real_material.cpp" />
     <ClCompile Include="src\texture\rectangle_texture.cpp" />
     <ClCompile Include="src\texture\smiley_texture.cpp" />
     <ClCompile Include="src\texture\smiley_texture_filtering.cpp" />
@@ -193,7 +194,6 @@
     <ClInclude Include="headers\functions.h" />
     <ClInclude Include="headers\shader.h" />
     <ClInclude Include="headers\stb_image.h" />
-    <ClInclude Include="src\materials\materials.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="shaders\basic_lightning_diffuse.fs" />
