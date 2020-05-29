@@ -1,24 +1,27 @@
 #include "../../headers/functions.h"
 #include <iostream>
 
-void mouse_callback7(GLFWwindow* window, double xpos, double ypos);
-void scroll_callback7(GLFWwindow* window, double xoffset, double yoffset);
-void processInput7(GLFWwindow* window);
+namespace basicLightViewNS {
+    void mouse_callback(GLFWwindow* window, double xpos, double ypos);
+    void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
+    void processInput(GLFWwindow* window);
 
-// camera
-Camera camera7(glm::vec3(0.0f, 0.0f, 3.0f));
-float lastX7 = SCR_WIDTH / 2.0f;
-float lastY7 = SCR_HEIGHT / 2.0f;
-bool firstMouse7 = true;
+    // camera
+    Camera camera(glm::vec3(0.0f, 0.0f, 3.0f));
+    float lastX = SCR_WIDTH / 2.0f;
+    float lastY = SCR_HEIGHT / 2.0f;
+    bool firstMouse = true;
 
-// timing
-float deltaTime7 = 0.0f;
-float lastFrame7 = 0.0f;
+    // timing
+    float deltaTime = 0.0f;
+    float lastFrame = 0.0f;
 
-// lighting
-glm::vec3 lightPos7(1.2f, 1.0f, 2.0f);
+    // lighting
+    glm::vec3 lightPos(1.2f, 1.0f, 2.0f);
+}
+using namespace basicLightViewNS;
 
-int main_view()
+int main_basicLightView()
 {
     GLFWwindow* window;
     try {
@@ -27,8 +30,8 @@ int main_view()
     catch (std::exception& e) {
         return -1;
     }
-    glfwSetCursorPosCallback(window, mouse_callback7);
-    glfwSetScrollCallback(window, scroll_callback7);
+    glfwSetCursorPosCallback(window, mouse_callback);
+    glfwSetScrollCallback(window, scroll_callback);
     // tell GLFW to capture our mouse
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
     glEnable(GL_DEPTH_TEST);
@@ -117,12 +120,12 @@ int main_view()
         // per-frame time logic
         // --------------------
         float currentFrame = glfwGetTime();
-        deltaTime7 = currentFrame - lastFrame7;
-        lastFrame7 = currentFrame;
+        deltaTime = currentFrame - lastFrame;
+        lastFrame = currentFrame;
 
         // input
         // -----
-        processInput7(window);
+        processInput(window);
 
         // render
         // ------
@@ -133,12 +136,12 @@ int main_view()
         lightingShader.use();
         lightingShader.setVec3("objectColor", 1.0f, 0.5f, 0.31f);
         lightingShader.setVec3("lightColor", 1.0f, 1.0f, 1.0f);
-        lightingShader.setVec3("lightPos", lightPos7);
-        lightingShader.setVec3("viewPos", camera7.Position);
+        lightingShader.setVec3("lightPos", lightPos);
+        lightingShader.setVec3("viewPos", camera.Position);
 
         // view/projection transformations
-        glm::mat4 projection = glm::perspective(glm::radians(camera7.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
-        glm::mat4 view = camera7.GetViewMatrix();
+        glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
+        glm::mat4 view = camera.GetViewMatrix();
         lightingShader.setMat4("projection", projection);
         lightingShader.setMat4("view", view);
 
@@ -156,7 +159,7 @@ int main_view()
         lightCubeShader.setMat4("projection", projection);
         lightCubeShader.setMat4("view", view);
         model = glm::mat4(1.0f);
-        model = glm::translate(model, lightPos7);
+        model = glm::translate(model, lightPos);
         model = glm::scale(model, glm::vec3(0.2f)); // a smaller cube
         lightCubeShader.setMat4("model", model);
 
@@ -182,46 +185,48 @@ int main_view()
     return 0;
 }
 
-// process all input: query GLFW whether relevant keys are pressed/released this frame and react accordingly
-// ---------------------------------------------------------------------------------------------------------
-void processInput7(GLFWwindow* window)
-{
-    if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
-        glfwSetWindowShouldClose(window, true);
-
-    if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
-        camera7.ProcessKeyboard(FORWARD, deltaTime7);
-    if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
-        camera7.ProcessKeyboard(BACKWARD, deltaTime7);
-    if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
-        camera7.ProcessKeyboard(LEFT, deltaTime7);
-    if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
-        camera7.ProcessKeyboard(RIGHT, deltaTime7);
-}
-
-// glfw: whenever the mouse moves, this callback is called
-// -------------------------------------------------------
-void mouse_callback7(GLFWwindow* window, double xpos, double ypos)
-{
-    if (firstMouse7)
+namespace basicLightViewNS {
+    // process all input: query GLFW whether relevant keys are pressed/released this frame and react accordingly
+    // ---------------------------------------------------------------------------------------------------------
+    void processInput(GLFWwindow* window)
     {
-        lastX7 = xpos;
-        lastY7 = ypos;
-        firstMouse7 = false;
+        if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+            glfwSetWindowShouldClose(window, true);
+
+        if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
+            camera.ProcessKeyboard(FORWARD, deltaTime);
+        if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
+            camera.ProcessKeyboard(BACKWARD, deltaTime);
+        if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
+            camera.ProcessKeyboard(LEFT, deltaTime);
+        if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
+            camera.ProcessKeyboard(RIGHT, deltaTime);
     }
 
-    float xoffset = xpos - lastX7;
-    float yoffset = lastY7 - ypos; // reversed since y-coordinates go from bottom to top
+    // glfw: whenever the mouse moves, this callback is called
+    // -------------------------------------------------------
+    void mouse_callback(GLFWwindow* window, double xpos, double ypos)
+    {
+        if (firstMouse)
+        {
+            lastX = xpos;
+            lastY = ypos;
+            firstMouse = false;
+        }
 
-    lastX7 = xpos;
-    lastY7 = ypos;
+        float xoffset = xpos - lastX;
+        float yoffset = lastY - ypos; // reversed since y-coordinates go from bottom to top
 
-    camera7.ProcessMouseMovement(xoffset, yoffset);
-}
+        lastX = xpos;
+        lastY = ypos;
 
-// glfw: whenever the mouse scroll wheel scrolls, this callback is called
-// ----------------------------------------------------------------------
-void scroll_callback7(GLFWwindow* window, double xoffset, double yoffset)
-{
-    camera7.ProcessMouseScroll(yoffset);
+        camera.ProcessMouseMovement(xoffset, yoffset);
+    }
+
+    // glfw: whenever the mouse scroll wheel scrolls, this callback is called
+    // ----------------------------------------------------------------------
+    void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
+    {
+        camera.ProcessMouseScroll(yoffset);
+    }
 }

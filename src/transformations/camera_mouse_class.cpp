@@ -1,21 +1,24 @@
 #include "../../headers/functions.h"
 #include <iostream>
 
-void mouse_callback2(GLFWwindow* window, double xpos, double ypos);
-void scroll_callback2(GLFWwindow* window, double xoffset, double yoffset);
-void processInputPosition2(GLFWwindow* window);
+namespace cameraMouseClassNS {
+    void mouse_callback(GLFWwindow* window, double xpos, double ypos);
+    void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
+    void processInput(GLFWwindow* window);
 
-// camera
-Camera camera(glm::vec3(0.0f, 0.0f, 3.0f));
-float lastX2 = SCR_WIDTH / 2.0f;
-float lastY2 = SCR_HEIGHT / 2.0f;
-bool firstMouse2 = true;
+    // camera
+    Camera camera(glm::vec3(0.0f, 0.0f, 3.0f));
+    float lastX = SCR_WIDTH / 2.0f;
+    float lastY = SCR_HEIGHT / 2.0f;
+    bool firstMouse = true;
 
-// timing
-float deltaTime2 = 0.0f;	// time between current frame and last frame
-float lastFrame2 = 0.0f;
+    // timing
+    float deltaTime = 0.0f;	// time between current frame and last frame
+    float lastFrame = 0.0f;
+}
+using namespace cameraMouseClassNS;
 
-int main_mouse_class()
+int main()
 {
     GLFWwindow* window;
     try {
@@ -24,8 +27,8 @@ int main_mouse_class()
     catch (std::exception& e) {
         return -1;
     }
-    glfwSetCursorPosCallback(window, mouse_callback2);
-    glfwSetScrollCallback(window, scroll_callback2);
+    glfwSetCursorPosCallback(window, mouse_callback);
+    glfwSetScrollCallback(window, scroll_callback);
     // tell GLFW to capture our mouse
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
     glEnable(GL_DEPTH_TEST);
@@ -172,12 +175,12 @@ int main_mouse_class()
         // per-frame time logic
         // --------------------
         float currentFrame = glfwGetTime();
-        deltaTime2 = currentFrame - lastFrame2;
-        lastFrame2 = currentFrame;
+        deltaTime = currentFrame - lastFrame;
+        lastFrame = currentFrame;
 
         // input
         // -----
-        processInputPosition2(window);
+        processInput(window);
 
         // render
         // ------
@@ -232,46 +235,48 @@ int main_mouse_class()
     return 0;
 }
 
-// process all input: query GLFW whether relevant keys are pressed/released this frame and react accordingly
-// ---------------------------------------------------------------------------------------------------------
-void processInputPosition2(GLFWwindow* window)
-{
-    if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
-        glfwSetWindowShouldClose(window, true);
-
-    if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
-        camera.ProcessKeyboard(FORWARD, deltaTime2);
-    if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
-        camera.ProcessKeyboard(BACKWARD, deltaTime2);
-    if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
-        camera.ProcessKeyboard(LEFT, deltaTime2);
-    if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
-        camera.ProcessKeyboard(RIGHT, deltaTime2);
-}
-
-// glfw: whenever the mouse moves, this callback is called
-// -------------------------------------------------------
-void mouse_callback2(GLFWwindow* window, double xpos, double ypos)
-{
-    if (firstMouse2)
+namespace cameraMouseClassNS {
+    // process all input: query GLFW whether relevant keys are pressed/released this frame and react accordingly
+    // ---------------------------------------------------------------------------------------------------------
+    void processInput(GLFWwindow* window)
     {
-        lastX2 = xpos;
-        lastY2 = ypos;
-        firstMouse2 = false;
+        if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+            glfwSetWindowShouldClose(window, true);
+
+        if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
+            camera.ProcessKeyboard(FORWARD, deltaTime);
+        if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
+            camera.ProcessKeyboard(BACKWARD, deltaTime);
+        if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
+            camera.ProcessKeyboard(LEFT, deltaTime);
+        if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
+            camera.ProcessKeyboard(RIGHT, deltaTime);
     }
 
-    float xoffset = xpos - lastX2;
-    float yoffset = lastY2 - ypos; // reversed since y-coordinates go from bottom to top
+    // glfw: whenever the mouse moves, this callback is called
+    // -------------------------------------------------------
+    void mouse_callback(GLFWwindow* window, double xpos, double ypos)
+    {
+        if (firstMouse)
+        {
+            lastX = xpos;
+            lastY = ypos;
+            firstMouse = false;
+        }
 
-    lastX2 = xpos;
-    lastY2 = ypos;
+        float xoffset = xpos - lastX;
+        float yoffset = lastY - ypos; // reversed since y-coordinates go from bottom to top
 
-    camera.ProcessMouseMovement(xoffset, yoffset);
-}
+        lastX = xpos;
+        lastY = ypos;
 
-// glfw: whenever the mouse scroll wheel scrolls, this callback is called
-// ----------------------------------------------------------------------
-void scroll_callback2(GLFWwindow* window, double xoffset, double yoffset)
-{
-    camera.ProcessMouseScroll(yoffset);
+        camera.ProcessMouseMovement(xoffset, yoffset);
+    }
+
+    // glfw: whenever the mouse scroll wheel scrolls, this callback is called
+    // ----------------------------------------------------------------------
+    void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
+    {
+        camera.ProcessMouseScroll(yoffset);
+    }
 }
