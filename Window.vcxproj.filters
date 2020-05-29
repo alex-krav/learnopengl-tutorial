@@ -132,6 +132,18 @@
     <ClCompile Include="src\light_casters\multiple_lights.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\light_casters\multiple_lights_factory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\light_casters\multiple_lights_horror.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\light_casters\multiple_lights_biolab.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\light_casters\multiple_lights_desert.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="headers\camera.h">

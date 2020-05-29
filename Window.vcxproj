@@ -161,6 +161,7 @@
     <ClCompile Include="headers\functions.cpp" />
     <ClCompile Include="headers\glad.c" />
     <ClCompile Include="headers\stb_image.cpp" />
+    <ClCompile Include="src\light_casters\multiple_lights_desert.cpp" />
     <ClCompile Include="src\lightning\basic_lightning_diffuse.cpp" />
     <ClCompile Include="src\lightning\basic_lightning_gouraud.cpp" />
     <ClCompile Include="src\lightning\basic_lightning_move.cpp" />
@@ -172,6 +173,9 @@
     <ClCompile Include="src\light_casters\light_casters_flashlight.cpp" />
     <ClCompile Include="src\light_casters\light_casters_sport_soft.cpp" />
     <ClCompile Include="src\light_casters\multiple_lights.cpp" />
+    <ClCompile Include="src\light_casters\multiple_lights_biolab.cpp" />
+    <ClCompile Include="src\light_casters\multiple_lights_factory.cpp" />
+    <ClCompile Include="src\light_casters\multiple_lights_horror.cpp" />
     <ClCompile Include="src\materials\lighting_maps_diffuse.cpp" />
     <ClCompile Include="src\materials\lighting_maps_emission.cpp" />
     <ClCompile Include="src\materials\lighting_maps_specular.cpp" />
