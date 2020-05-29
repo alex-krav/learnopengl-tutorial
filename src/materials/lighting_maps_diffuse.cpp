@@ -4,7 +4,7 @@
 namespace ligthMapsNS {
     void mouse_callback(GLFWwindow* window, double xpos, double ypos);
     void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
-    void processInputWASD(GLFWwindow* window);
+    void processInput(GLFWwindow* window);
 
     // camera
     Camera camera(glm::vec3(0.0f, 0.0f, 3.0f));
@@ -133,7 +133,7 @@ int main_light_map_diff()
 
         // input
         // -----
-        processInputWASD(window);
+        processInput(window);
 
         // render
         // ------
@@ -207,7 +207,7 @@ int main_light_map_diff()
 namespace ligthMapsNS {
     // process all input: query GLFW whether relevant keys are pressed/released this frame and react accordingly
     // ---------------------------------------------------------------------------------------------------------
-    void processInputWASD(GLFWwindow* window)
+    void processInput(GLFWwindow* window)
     {
         if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
             glfwSetWindowShouldClose(window, true);

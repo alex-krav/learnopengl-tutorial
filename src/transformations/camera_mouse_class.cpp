@@ -18,7 +18,7 @@ namespace cameraMouseClassNS {
 }
 using namespace cameraMouseClassNS;
 
-int main()
+int main_cam_class()
 {
     GLFWwindow* window;
     try {
